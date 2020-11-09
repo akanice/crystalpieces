@@ -1,6 +1,10 @@
 ﻿/*
 	CR Team - Professional Web Designer
 */
+@font-face {
+	font-family: goodtimes;
+	src: url('/assets/fonts/goodtimes.ttf');
+}
 body {
     border: 0;
     margin: 0;
@@ -645,7 +649,7 @@ a {
 	color: white;
     font-size: 18px;
     font-weight: 800;
-    font-family: "Montserrat";
+    font-family: "goodtimes";
     overflow: hidden;
     display: -webkit-box;
     -webkit-line-clamp: 2;
@@ -739,7 +743,7 @@ a {
 	text-transform: uppercase;
 }
 .footer-right .icon a{
-	color: #000;
+	color: #f1f1f1;
 	font-size: 20px;
 	margin-right: 5px;
 }
