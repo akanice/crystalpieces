@@ -6,7 +6,7 @@
 	<head>
 		<?php $this->load->view(FRONTEND.'head'); ?>
 	</head>
-	<body>
+	<body class="<?=@$body_class_page?>">
 		<div class="body-wrapper theme-clearfix">
 			<?php
 				$this->load->view(FRONTEND.'header', $this->data); 

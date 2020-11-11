@@ -747,3 +747,44 @@ a {
 	font-size: 20px;
 	margin-right: 5px;
 }
+.breadcrumbs {
+    text-align: left;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 10px;
+    background-color: rgba(54, 58, 64, 0.3);
+}
+.paging-com {
+    clear: both;
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+.paging-com .page-prev, .paging-com .page-page, .paging-com .page-next {
+    display: inline-block;
+    padding: 0 16px;
+    font-weight: 700;
+    color: #fff;
+    font-size: 16px;
+}
+.paging-com .page-prev i, .paging-com .page-next i, .paging-com .page-first i, .paging-com.page-last i {
+    color: #fff;
+    font-size: 30px;
+    position: relative;
+    top: -3px;
+}
+.paging-com .page-page.my-selected {
+    top: -4px;
+    text-align: center;
+    padding-top: 3px;
+    padding-left: 0;
+    padding-right: 0;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: #caa430;
+    position: relative;
+    text-decoration: none;
+}
