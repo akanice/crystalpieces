@@ -63,6 +63,10 @@
 	.owl-3-article .owl-stage {
 		right: 30px;
 	}
+	.sale-schedule-wapper .row.products-w {
+		margin-left: -5px;
+		margin-right:-5px;
+	}
 }
 @media (max-width: 1199px) {
 	
