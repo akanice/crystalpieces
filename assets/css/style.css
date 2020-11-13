@@ -11,7 +11,7 @@ body {
     outline: 0;
     padding: 0;
     vertical-align: baseline;
-    font-size: 14px;
+    font-size: 15px;
     line-height: 25px;
     font-family: montserrat,sans-serif;
     font-weight: 400;
@@ -787,4 +787,71 @@ a {
     background: #caa430;
     position: relative;
     text-decoration: none;
+}
+.product-detail .rating.rate-star {
+	float: none;
+}
+.btn-order {
+    background-color: #222;
+    border-color: #222;
+    color: #ff5722;
+    -webkit-font-smoothing: antialiased;
+	display: block;
+    width: 100%;
+	background: transparent;
+    border: 1px solid #f44336;
+    margin: 0;
+    outline: none;
+    padding: 0;
+    text-transform: uppercase;
+    touch-action: manipulation;
+}
+.btn-order span {
+	background-size: calc(200% + 60px) 100%;
+	height: 60px;
+    padding: 0 22px;
+	font-weight: bold;
+	align-content: center;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    margin: -1px;
+    outline: none;
+    position: relative;
+	background-position: calc(-23px) 0;
+    transition: background-position .25s ease,color .25s ease;
+    background-image: linear-gradient(-45deg,#f44336 50%,transparent 0);
+}
+.btn-order:hover span {
+	background-position: 100% 0;
+    color: #fff;
+}
+.product-des .border-product {
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border-top: 1px dashed #2d2d2d;
+}
+.product-des .product-icon .product-social {
+    margin-top: 5px;
+}
+.product-social li {
+    display: inline-block;
+}
+.product-des .product-icon .product-social li {
+    padding-right: 30px;
+}
+.product-des .product-icon .product-social li a {
+    color: #f2f2f2;
+    -webkit-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+    width: 48px;
+    height: 48px;
+    display: inline-block;
+    border: 1px solid #f2f2f2;
+    line-height: 48px;
+    text-align: center;
+    border-radius: 55px;
+}
+.product-des .product-icon .product-social li a i {
+    font-size: 18px;
 }
