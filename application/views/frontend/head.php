@@ -1,4 +1,4 @@
-	<title><?php if ($title == '' or $title == null) {echo 'Siêu thị khóa điện tử';} else {echo $title;}?></title>
+	<title><?php if ($title == '' or $title == null) {echo 'CrystalPieces';} else {echo $title;}?></title>
 	
 	<meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,7 +7,7 @@
 	<meta name="copyright" content="Copyright © 2019 by sieuthikhoadientu.com" />
 	<meta name="keywords" content="<?=@$meta_keywords?>" />
 	<meta name="description" content="<?=@$meta_description?>" />
-	<meta name="og:title" content="<?php if (@$meta_title == '' or @$meta_title == null) {echo 'sieuthikhoadientu.com';} else {echo @$meta_title;}?>" />
+	<meta name="og:title" content="<?php if (@$meta_title == '' or @$meta_title == null) {echo 'crystalpieces.com';} else {echo @$meta_title;}?>" />
 	<meta name="og:keywords" content="<?=@$meta_keywords?>" />
 	<meta name="og:description" content="<?=@$meta_description?>" />
 	<meta property="og:image" content="<?php if (@$meta_images && @$meta_images != '') {echo base_url(@$meta_images);} else {echo base_url($home_logo);}?>" />
@@ -26,19 +26,18 @@
 	//deferstyle('https://fonts.googleapis.com/css?family=Open+Sans:400,600,700&amp;subset=vietnamese', 'google-font-css', 1000);
 	</script>
 	
-	<link href="<?=base_url('assets/css/front/bootstrap-submenu.min.css')?>" rel="stylesheet">
-	<link href="<?=base_url('assets/css/front/color1.css')?>" rel="stylesheet">
 	<link href="<?=base_url('assets/css/animate.css')?>" rel="stylesheet">
 	<link href="<?=base_url('assets/plugins/owl-carousel/css/owl.carousel.min.css')?>" rel="stylesheet">
 	<link href="<?=base_url('assets/plugins/owl-carousel/css/owl.theme.default.min.css')?>" rel="stylesheet">
 	<link href="<?=base_url('assets/css/slick.css')?>" rel="stylesheet">
 	<link href="<?=base_url('assets/css/slick-theme.css')?>" rel="stylesheet">
-	<link href="<?=base_url('assets/plugins/colorbox/colorbox.css')?>" rel="stylesheet">
-	<link href="<?=base_url('assets/fonts/themify-icons.css')?>" rel="stylesheet">
-	<link href="<?=base_url('assets/css/front/style.css')?>" rel="stylesheet">
-	<link href="<?=base_url('assets/css/front/responsive.css')?>" rel="stylesheet">
+	<link href="<?=base_url('assets/css/core.css')?>" rel="stylesheet">
+	<link href="<?=base_url('assets/css/style.css')?>" rel="stylesheet">
+	<link href="<?=base_url('assets/css/responsive.css')?>" rel="stylesheet">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/css/swiper.min.css" rel="stylesheet" >
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
-	<link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700,900&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Quicksand:300,400,500,700" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700;900&display=swap" rel="stylesheet">
 	<?=@$global_header_code;?>
 	
 	<?=@$post_header_code;?>
@@ -50,4 +49,3 @@
                   <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
                   <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 		<![endif]-->
-		

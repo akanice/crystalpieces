@@ -72,11 +72,11 @@
                                 <div class="header text-center">Login</div>
                                 <div class="content">
                                     <div class="form-group">
-                                        <label>Email đăng nhập</label>
+                                        <label>Email</label>
                                         <input name="email" type="email" required="" placeholder="Email" class="form-control">
                                     </div>
                                     <div class="form-group">
-                                        <label>Mật khẩu</label>
+                                        <label>Password</label>
                                         <input name="pass" type="password" required="" placeholder="Password" class="form-control" style="border-radius: 0">
                                     </div>                                    
                                     <div class="form-group">
@@ -126,7 +126,7 @@
                     </ul>
                 </nav>
                 <p class="copyright pull-right">
-                    © 2019 Made for kabu.vn
+                    © 2020 CrystalPieces.com
                 </p>
             </div>
         </footer>

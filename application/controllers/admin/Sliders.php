@@ -99,8 +99,7 @@ class Sliders extends MY_Controller{
         }
     }
 
-    public function edit($id)
-    {
+    public function edit($id) {
         $this->data['slider'] = $this->slidersmodel->read(array('id'=>$id),array(),true);
         if($this->input->post('submit') != null){
             $uploaddir = 'assets/uploads/slider/';

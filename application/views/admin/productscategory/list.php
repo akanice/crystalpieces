@@ -64,6 +64,7 @@
 														echo $item->title;
 													}
 												?>
+												<a href="<?=@base_url('category/'.$item->alias)?>" class="btn btn-sm btn-fill btn-success" target="_blank">Xem</a>
 											</td>
 											<td style="text-align: center"><a href="<?=@base_url('admin/productscategory/edit/'.$item->id)?>"><i class="fa fa-pencil"></i> Sửa</a> | <a href="<?=@base_url('admin/productscategory/delete/'.$item->id)?>" onclick="return confirm('Bạn có chắc chắn muốn xóa không?')" ><i class="fa fa-trash"></i> Xóa</a></td>
 										</tr>

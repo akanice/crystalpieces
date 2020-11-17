@@ -38,7 +38,7 @@ CKEDITOR.editorConfig = function( config ) {
 	config.extraPlugins = 'enterkey,colorbutton';
 	config.extraPlugins = 'colorbutton';
 	config.extraPlugins = 'panelbutton';
-	config.extraPlugins = 'pastefromexcel';
+	// config.extraPlugins = 'pastefromexcel';
 	// Remove some buttons provided by the standard plugins, which are
 	// not needed in the Standard(s) toolbar.
 	config.removeButtons = 'Underline,Subscript,Superscript';

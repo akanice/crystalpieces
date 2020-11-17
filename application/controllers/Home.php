@@ -47,14 +47,6 @@ class Home extends MY_Controller {
 		// Load featured/newest products
 		$this->data['mostviewed'] = $this->productsmodel->read(array('featured'=>1,'type'=>'product'),array('id'=>false),false,12);
 		
-		//Load products by category
-		$cat_available = $configs['cat_available'] = $this->configsmodel->read(array('name' => 'cat_available'), array(), true)->value;
-		$cat_available = json_decode($cat_available);
-		foreach ($cat_available as $k=>$c) {
-			$this->data['cat_info'][$k] = $this->productscategorymodel->read(array('id' => $c), array(), true);
-			$this->data['cat_info'][$k]->brand = $this->productsmodel->ElementFilterBrand($c);
-			// print_r($this->data['cat_info']);
-		}
 		// die();
 		// Load partner brand
 		$this->data['brands'] = $this->brandsmodel->read(array(),array(),false);
@@ -71,7 +63,7 @@ class Home extends MY_Controller {
 		$this->data['list_video'] = $this->videosmodel->getRandomListVideos($this->data['video']->alias,3);
 		
 		// Load newest article
-		$this->data['home_news'] = $this->newsmodel->read(array(),array('id'=>false),false);
+		$this->data['home_news'] = $this->newsmodel->read(array(),array('id'=>false),false,6);
 		$this->data['hot_news'] = $this->newsmodel->getNewsByCategoryId(1, 3,'');
 		
 		// Load Group Banners
@@ -84,9 +76,9 @@ class Home extends MY_Controller {
         $this->data['meta_description'] = @$options['home_meta_description']->value;
         $this->data['meta_keywords'] = @$options['home_meta_keywords']->value;
 		
-		$this->load->view('frontend/maintaince');
-        // $this->data['temp'] = 'frontend/home/index';
-		// $this->load->view('frontend/index', $this->data);
+		// $this->load->view('frontend/maintaince');
+        $this->data['temp'] = 'frontend/home/index';
+		$this->load->view('frontend/index', $this->data);
 
     }
 

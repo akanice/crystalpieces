@@ -4,7 +4,7 @@
                     
                 </nav>
                 <p class="copyright pull-right">
-                    © 2015 <a href="#">sieuthikhoadientu.com</a> - sieuthikhoadientu.com
+                    © 2020 <a href="#">CrystalPieces</a> - crystalpieces.com
                 </p>
             </div>
         </footer>

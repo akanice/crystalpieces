@@ -35,12 +35,12 @@
     <div class="sidebar" data-color="purple" data-image="<?=base_url('/assets/img/sidebar-4.jpg')?>">
 		<div class="logo">
 			<a href="#" class="logo-text">
-				Nhật Minh Locks
+				CrystalPieces
 			</a>
 		</div>
 		<div class="logo logo-mini">
 			<a href="#" class="logo-text">
-				Nhật Minh Locks
+				CrystalPieces
 			</a>
 		</div>
 
