@@ -73,7 +73,7 @@
 										<tr class="odd gradeX">
 											<td><?=@$item->id?></td>
 											<td><img src="<?=@site_url($item->thumb)?>" style="height:20px"></td>
-											<td><?=@$item->title?> <a href="<?=@base_url('san-pham/'.$item->alias)?>" class="btn btn-sm btn-fill btn-primary" target="_blank">Xem</a></td>
+											<td><?=@$item->title?> <a href="<?=@base_url('product/'.$item->alias)?>" class="btn btn-sm btn-fill btn-primary" target="_blank">Xem</a></td>
 											<td><?php if (@$item->type == 'product') {echo '<span class="">Sản phẩm</span>';} else {echo '<span class="text-primary">Phụ kiện</span>';}?></td>
 											<td><?=@$item->cat_name?></td>
 											<td><?php if ($item->featured == 1) {echo '<i class="fa fa-check"></i>';}?></td>

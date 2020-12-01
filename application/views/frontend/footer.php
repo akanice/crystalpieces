@@ -14,7 +14,7 @@
 					<div class="footer-left">
 						<div class="footer-left-left">
 							<picture>
-								<img src="/assets/img/Pic-of-the-day.png">
+								<img src="/assets/img/logo.png" width="100px">
 							</picture>
 						</div>
 						<div class="footer-left-right" style="background-image: url('/assets/img/footer-pattern-3.1.png')">
@@ -22,16 +22,16 @@
 					</div>
 					<div class="footer-right">
 						<div class="icon" style="position: relative; z-index: 1;">
-							<a class="facebook" href="#" target="_blank">
+							<a class="facebook" href="https://www.facebook.com/CrPKeycapandmore/" target="_blank">
 								<i class="fab fa-facebook"></i>
 							</a>
-							<a class="instagram" href="#" target="_blank">
+							<a class="instagram" href="https://www.instagram.com/crystalpieces.crp" target="_blank">
 								<i class="fab fa-instagram"></i>
 							</a>
 						</div>
-						<div class="footer-title-web">CrystalPieces JSC</div>
-						<div class="commission">Artisans keycaps maker</div>
-						<div class="copy-right">© COPYRIGHT 2020 CrystalPieces JSC. All rights reserved.</div>
+						<div class="footer-title-web">CRYSTAL PIECES &#174;</div>
+						<div class="commission">Keycaps and more</div>
+						<div class="copy-right">© COPYRIGHT 2020 CrystalPieces. All rights reserved.</div>
 					</div>
 				</footer>
 				<!-- End Footer -->
@@ -54,38 +54,15 @@
             </div>
         </div>
 		
-	<script src="<?=base_url('assets/plugins/owl-carousel/js/owl.carousel.min.js')?>"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 	<script src="<?=base_url('assets/js/slick.js')?>" type="text/javascript"></script>
 	<script type="text/javascript" src="<?=base_url('assets/js/script.js')?>"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
+	<script src="<?=base_url('assets/plugins/owl-carousel/js/owl.carousel.min.js')?>"></script>
+	<script type="text/javascript" src="<?=base_url('assets/js/script.js')?>"></script>
 	<script type="text/javascript">
 		$(document).ready(function () {			
-			$(".owl-3-article").owlCarousel({
-				loop:true,
-					margin:15,
-					nav:false,
-					autoplay: false,
-					responsiveClass:true,
-					responsive:{
-						0:{
-							items:1,
-							nav:false,
-							dots:false,
-							stagePadding: 30,
-						},
-						600:{
-							items:4,
-							nav:false
-						},
-						1000:{
-							items:4,
-							nav:false,
-							loop: true
-						}
-					}
-			});
 			
 			setTimeout(function() {
 				(function(d, s, id){

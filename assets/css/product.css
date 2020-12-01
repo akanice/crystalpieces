@@ -33,7 +33,7 @@
 }
 .product_tabs .tab-pane {
 	padding: 30px;
-	background: #fff;
+	background: #ffffffd9;
 }
 .product_tabs .tab-pane,.product_tabs p {
 	color: #000;
@@ -60,7 +60,7 @@
 /* Cart page */
 .cart-form {
     padding: 15px;
-    background: #fff;
+    background: #e8e8e8;
 }
 .table.table-cart tr th, .table.table-cart tr td {
     vertical-align: middle;
@@ -333,8 +333,23 @@
     font-weight: bold;
 	font-size: 22px;
 }
-.col .name {
-	line-height: 50px;
+.col .total.name {
+	font-size: 18px;
+	margin: 0;
+}
+.last-row {
+    border-top: 1px dashed #ccc;
+    margin: 15px 0;
+    padding: 10px 0;
+    border-bottom: 1px dashed #ccc;
+}
+.form-order .form-group {
+	margin-bottom: 10px;
+}
+.form-order .form-control {
+	height: auto;
+	font-size: 16px;
+	padding: 8px 10px;
 }
 @media (max-width: 767px) {
 	.table.table-cart .product-row {

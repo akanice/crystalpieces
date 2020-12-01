@@ -14,7 +14,7 @@ class Products extends MY_Controller {
     }
 
     public function index() {
-        $this->data['title'] = 'Bếp Thành Vinh - Shop';
+        $this->data['title'] = 'Crystal Pieces - Shop';
 		
 		$total = count($this->productsmodel->read());
         $per_page = 20;

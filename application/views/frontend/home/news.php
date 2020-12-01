@@ -34,25 +34,11 @@
 							</div>
 						</div>
 					</div>
-					<div class="blog-item-home wow fadeIn blog-item-odd" style="visibility: visible; animation-name: fadeIn;">
+					<!--<div class="blog-item-home wow fadeIn blog-item-odd" style="visibility: visible; animation-name: fadeIn;">
 						<div class="blog-image-w">
-							<div class="post-prev-img">
-								<a href="#">
-									<img src="/assets/img/sample_blog_thumb2.jpg" alt="img">
-								</a>
-							</div>
+
 						</div>
-						<div class="blog-title-w">
-							<div class="post-prev-title">
-								<h3><a href="#">How to become a pro DF’s collector?</a></h3>
-							</div>
-							<div class="post-prev-text">
-								Tại Việt Nam có hàng trăm thương hiệu bàn phím cơ khác nhau từ giá rẻ đến đắt tiền, từ không đèn nền đến LED RGB, từ sản phẩm bình dân đến thủ công mĩ nghệ. Thị trường có quá nhiều sự lựa chọn vậy mình nên chọn bàn phím cơ nào? Nhu cầu của mình như thế nào? OK, vào vấn đề nhé!
-							</div>
-							<div class="tag-in-item">
-							</div>
-						</div>
-					</div>
+					</div>-->
 					<!-- End Feature Article -->
 					
 					<div class="blog-list-scrollable">

@@ -5,7 +5,7 @@
 <!-- BEGIN HEAD -->
 <head>
 	<meta charset="utf-8" />
-	<title><?php if (!isset($title)) {echo 'Siêu thị khóa điện tử - Admin CP';} else {echo $title;}?></title>
+	<title><?php if (!isset($title)) {echo 'CrystalPieces - Admin CP';} else {echo $title;}?></title>
 	<meta content="width=device-width, initial-scale=1.0" name="viewport" />
 	<meta content="" name="description" />
 	<meta content="akanice" name="author" />
@@ -23,6 +23,7 @@
     <link href="<?=base_url('assets/css/font-awesome.min.css')?>" rel="stylesheet">
     <link href="<?=base_url('assets/css/pe-icon-7-stroke.css')?>" rel="stylesheet">
 	<link href="<?=base_url('assets/fonts/fontbakery/font-bakery.css')?>" rel="stylesheet">
+	<link rel="icon" href="<?=base_url('assets/img/favicon.png')?>" sizes="64x64" />
 	<link href="https://fonts.googleapis.com/css?family=Quicksand:400,500,700&amp;subset=vietnamese" rel="stylesheet">
     <!-- ie8 fixes -->
     <!--[if lt IE 9]>

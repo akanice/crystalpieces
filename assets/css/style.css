@@ -49,7 +49,8 @@ p {
 }
 @media(min-width: 1200px) {
     .container {
-		width: 1200px;
+		width: 1400px;
+		max-width: 1400px;
 	}
 }
 @media(min-width:767px) {
@@ -674,7 +675,7 @@ a {
 	padding-top: 20px;
 	padding-left: 20px;
 	padding-right: 20px;
-	height: 225px;
+	height: 125px;
     overflow: hidden;
     position: relative;
 }
@@ -794,12 +795,12 @@ a {
 .btn-order {
     background-color: #222;
     border-color: #222;
-    color: #e74c3c;
+    color: #e55039;
     -webkit-font-smoothing: antialiased;
 	display: block;
     width: 100%;
 	background: transparent;
-    border: 1px solid #e74c3c;
+    border: 1px solid #e55039;
     margin: 0;
     outline: none;
     padding: 0;
@@ -820,16 +821,16 @@ a {
     position: relative;
 	background-position: calc(-23px) 0;
     transition: background-position .25s ease,color .25s ease;
-    background-image: linear-gradient(-45deg,#e74c3c 50%,transparent 0);
+    background-image: linear-gradient(-45deg,#e55039 50%,transparent 0);
 }
 .btn-order:hover span {
 	background-position: 100% 0;
     color: #fff;
 }
 .product-des .border-product {
-    padding-top: 15px;
-    padding-bottom: 15px;
-    border-top: 1px dashed #2d2d2d;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border-top: 1px dashed #3c3c3c;
 }
 .product-des .product-icon .product-social {
     margin-top: 5px;
@@ -871,8 +872,58 @@ a {
 	color: #ccc;
 }
 .border-product .crumb.text-bold {
-	color: #e74c3c;
+	color: #e55039;
 }
 .p_detail_img {
 	border: 1px solid #292929;
+}
+.banner-blog-detail, .content-wrapper-template {
+	background-image: url('/assets/img/bg-darker.jpg');
+}
+#footer-com .footer-right {
+	background: #e55039 !important;
+	color: #f1f1f1;
+}
+.slick-slide img {
+    width: 100%;
+}
+.btn-buy_now {
+	background: #28a745;
+	color: #fff;
+	padding: 8px 20px;
+	transition: all 0.2s linear;
+}
+.btn-buy_now:hover,.btn-buy_now:focus {
+	color: #fff;
+}
+.category_content,.category_content p,.category_content h1, .category_content h2, .category_content h3, .category_content h4,.category_content h5 {
+	color: #fff;
+}
+.blog-page .inner {
+	padding: 30px 0;
+}
+.blog-thumb {
+	background-size: cover;
+	min-height: 300px;
+}
+.blog-page .title {
+	margin: 0 0 5px 0;
+	color: #ffc107;
+}
+.blog-page .blog-date {
+	margin: 0 0 15px 0;
+}
+.related_articles {
+	border-top: 1px dashed #444;
+}
+.jumbotron {
+	background-color: #1f1f1f;
+    border: 1px solid #2d2d2d;
+}
+.cart_success .cart-form{
+	min-height: 800px;
+}
+#home-page .sale-schedule-wapper.style2 {
+	padding: 0;
+	justify-content: center;
 }

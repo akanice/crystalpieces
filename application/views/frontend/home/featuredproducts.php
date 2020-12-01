@@ -34,7 +34,43 @@
 						<?php $i++;} ?>
 						
 					</div><!-- End Recent Products-->
-				
+					
+					<div class="row">
+						<div class="col-12">
+							<div class="sale-schedule-wapper style2">
+								<div class="sale-items-wrapper">
+								<div class="sale-item go-to-shop">
+									<div class="wrapper-link-go-to-shop">
+										<a class="item-gt-shop" href="#">
+											<span>Our Products</span>
+											<span class="arrow-right">
+												<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 150 34.4" style="enable-background:new 0 0 150 34.4;" xml:space="preserve">
+													<style type="text/css">
+														.st0 {
+															fill-rule: evenodd;
+															clip-rule: evenodd;
+														}
+													</style>
+													<path class="st0" d="M0,18.5h144.6l-12.9,11.9v3.2L150,17.5L131.7,1.3v3.2l12.9,11.9H0V18.5z"></path>
+												</svg>
+											</span> <span class="long-arrow-right">
+												<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 306.8 34.4" style="enable-background:new 0 0 306.8 34.4;" xml:space="preserve">
+													<style type="text/css">
+														.st0 {
+															fill-rule: evenodd;
+															clip-rule: evenodd;
+														}
+													</style>
+													<path class="st0" d="M-0.2,18.5h301.6l-12.9,11.9v3.2l18.3-16.1L288.5,1.3v3.2l12.9,11.9H-0.2V18.5z"></path>
+												</svg>
+											</span> </a>
+									</div>
+								</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					
 					<div class="sale-title">
 						<span>Upcoming</span>
 						<span class="text-special" title="Product">Product</span>

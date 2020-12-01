@@ -126,7 +126,9 @@ $route['dat-hang']         	 								=	"cart/index";
 $route['cart/del']         	 									=	"cart/del";
 $route['cart/update']         	 							=	"cart/update";
 $route['thanh-toan']         	 								=	"order/checkout";
-$route['success']         	 									=	"cart/success";
+$route['paypal']         	 									=	"paypal/index";
+$route['paypal/success']         	 						=	"paypal/success";
+$route['paypal/cancel']         	 							=	"paypal/cancel";
 
 
 // $route['(:any)'] 												= 	"products/viewCat/$1";

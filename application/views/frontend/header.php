@@ -7,8 +7,8 @@
 							<div class="logo-row">
 								<div class="logo-container-2 header-logo-container">
 									<div class="logo-2">
-										<a href="#" class="clearfix">
-											<img src="/assets/img/logo_2.png" class="logo-img" alt="Logo">
+										<a href="<?=base_url()?>" class="clearfix">
+											<img src="/assets/img/logo_main.png" class="logo-img" alt="Logo">
 										</a>
 									</div>
 								</div>
@@ -28,7 +28,7 @@
 								</div>
 								<div class="wrapper-logo">
 									<a href="#" class="header-logo-link-mobile">
-										<img src="/assets/img/logo_2.png" alt="Logo">
+										<img src="/assets/img/logo_main.png" alt="Logo">
 									</a>
 								</div>
 								<span></span>
