@@ -16,7 +16,7 @@
 			</div>
 		</div>
 		
-		<div id="contents" class="main-page category_content cart_info ">
+		<div id="contents" class="main-page category_content cart_info cart_success">
 			<div class="container">
 				<div class="row clearfix">
 					<div class="col-sm-6 col-12 cart-form">

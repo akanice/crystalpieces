@@ -14,7 +14,7 @@
 					<div class="footer-left">
 						<div class="footer-left-left">
 							<picture>
-								<img src="/assets/img/logo.png" width="100px">
+								<img src="/assets/img/logo_main.png" class="logo_footer">
 							</picture>
 						</div>
 						<div class="footer-left-right" style="background-image: url('/assets/img/footer-pattern-3.1.png')">

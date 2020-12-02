@@ -38,7 +38,7 @@
 								<b><?=@$notice?></span>
 						</div>
 						<?php } ?>
-						<h4 class="title">Sửa nội dung tin tức <a href="<?=@base_url('bai-viet/'.$news->alias)?>" class="btn btn-fill btn-sm btn-warning" target="_blank">Xem bài viết</a></h4>
+						<h4 class="title">Sửa nội dung tin tức <a href="<?=@base_url('post/'.$news->alias)?>" class="btn btn-fill btn-sm btn-warning" target="_blank">Xem bài viết</a></h4>
 					</div>
 					<div class="content">
                             <div class="form-group">

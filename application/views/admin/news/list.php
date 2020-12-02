@@ -68,8 +68,8 @@
 									<?php if($list) foreach ($list as $item) {?>
 										<tr class="odd gradeX">
 											<td><?=@$item->id?></td>
-											<td><?=@$item->title?> <img src="<?=@$item->thumb?>" width="18px" height="18px" class="img-circle"></td>
-											<td><a href="<?=@base_url('bai-viet/'.$item->alias)?>" class="btn btn-fill btn-sm btn-info" target="_blank"><i class="fa fa-pencil"></i> Xem</a></td>
+											<td><?=@$item->title?> <img src="<?=@base_url($item->thumb)?>" width="18px" height="18px" class="img-circle"></td>
+											<td><a href="<?=@base_url('post/'.$item->alias)?>" class="btn btn-fill btn-sm btn-info" target="_blank"><i class="fa fa-pencil"></i> Xem</a></td>
 											<td>
 												<?php if (isset($item->categoryid) && ($item->categoryid != '')) {
 													$space='';foreach ($item->categoryid as $n) { 

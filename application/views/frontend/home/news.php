@@ -9,7 +9,7 @@
 					<div class="blog-item-home wow fadeIn" style="visibility: visible; animation-name: fadeIn;">
 						<div class="blog-image-w">
 							<div class="post-prev-img">
-								<a href="#/blog/voidwalkers-the-untold-story.html">
+								<a href="#">
 									<img src="/assets/img/sample_blog_thumb2.jpg" alt="img">
 								</a>
 							</div>
@@ -22,13 +22,13 @@
 								Tại Việt Nam có hàng trăm thương hiệu bàn phím cơ khác nhau từ giá rẻ đến đắt tiền, từ không đèn nền đến LED RGB, từ sản phẩm bình dân đến thủ công mĩ nghệ. Thị trường có quá nhiều sự lựa chọn vậy mình nên chọn bàn phím cơ nào? Nhu cầu của mình như thế nào? OK, vào vấn đề nhé!
 							</div>
 							<div class="tag-in-item">
-								<a href="#/blog?tag=VOIDWALKER&amp;page=1" class="tag-item">
+								<a href="#/" class="tag-item">
 									#SWITCH LOW-PROFILE
 								</a>
-								<a href="#/blog?tag=ASTRONAUT&amp;page=1" class="tag-item">
+								<a href="#" class="tag-item">
 									#SWITCH TOPRE
 								</a>
-								<a href="#/blog?tag=Artkey&amp;page=1" class="tag-item">
+								<a href="#" class="tag-item">
 									#Fullsize
 								</a>
 							</div>
@@ -47,24 +47,24 @@
 							<div class="article-item">
 								<div class="article-item-content">
 									<div class="blog-image-w">
-										<a href="<?=base_url('bai-viet/'.$item->alias)?>">
+										<a href="<?=base_url('post/'.$item->alias)?>">
 											<img src="<?=base_url($item->thumb)?>" alt="img">
 										</a>
 									</div>
 									<div class="blog-title-w">
-										<a class="article-title" href="<?=base_url('bai-viet/'.$item->alias)?>"><?=@$item->title;?></a>
+										<a class="article-title" href="<?=base_url('post/'.$item->alias)?>"><?=@$item->title;?></a>
 										<div class="post-excerpt">
 											<?=$item->description?>
 										</div>
 										<div class="time"><?php echo date_format(date_create($item->create_time),"d/m/Y"); ?></div>
 										<div class="tag-in-item">
-											<a href="<?=base_url('bai-viet/'.$item->alias)?>" class="tag-item">
+											<a href="<?=base_url('post/'.$item->alias)?>" class="tag-item">
 												#crystalpieces
 											</a>
-											<a href="<?=base_url('bai-viet/'.$item->alias)?>" class="tag-item">
+											<a href="<?=base_url('post/'.$item->alias)?>" class="tag-item">
 												#chipu
 											</a>
-											<a href="<?=base_url('bai-viet/'.$item->alias)?>" class="tag-item">
+											<a href="<?=base_url('post/'.$item->alias)?>" class="tag-item">
 												#quynhanhshin
 											</a>
 										</div>

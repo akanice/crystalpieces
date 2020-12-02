@@ -33,7 +33,7 @@
 							@$cat_array = $products->categoryid;
 							@$cat_alias = $this->productscategorymodel->read(array('id'=>$cat_array[0]),array(),true)->alias;
 						?>
-						<h4 class="title">Sửa thông tin sản phẩm <a href="<?=@base_url('san-pham/'.$products->alias)?>" class="btn btn-sm btn-fill btn-warning" target="_blank">Xem</a> <a href="<?=@base_url('admin/products/add/')?>" class="btn btn-sm btn-fill btn-success" target="_blank"><i class="fa fa-plus"></i> Thêm mới</a></h4>
+						<h4 class="title">Sửa thông tin sản phẩm <a href="<?=@base_url('products/'.$products->alias)?>" class="btn btn-sm btn-fill btn-warning" target="_blank">Xem</a> <a href="<?=@base_url('admin/products/add/')?>" class="btn btn-sm btn-fill btn-success" target="_blank"><i class="fa fa-plus"></i> Thêm mới</a></h4>
 					</div>
 					<div class="content">
 						<div class="form-group">
@@ -92,36 +92,36 @@
 								</select>
 							</div>
 						</div>
-						<div class="form-group">
-								<label class="col-sm-2 control-label">Xuất xứ</label>
-								<div class="col-sm-4">
-									<?php
-									$countries = array("Chính hãng","Afghanistan", "Albania", "Algeria", "Samoa thuộc Mỹ", "Andorra", "Angola", "Anguilla", "Nam Cực", "Antigua và Barbuda", "Argentina", "Armenia", "Argentina", "Úc", "Áo", "Azerbaijan", "Bahamas", "Bahrain", "Bangladesh", "Barbados", "Belarus", "Bỉ", "Belize", "Bénin", "Bermuda", "Bhutan", "Bôlivia", "Bosnia và Herzegowina", "Botswana", "Đảo Bouvet", "Brazil", "Lãnh thổ Ấn Độ Dương thuộc Anh", "Brunei Darussalam", "Bulgaria", "Burkina Faso", "Burundi", "Campuchia", "Cameroon", "Canada", "Cape Verde", "Quần đảo Cayman", "Cộng hòa Trung Phi", "Chad", "Chile", "Trung Quốc", "Đảo Giáng sinh", "Cocos (Keeling ) Quần đảo", "Colombia", "Comoros", "Congo", "Congo, Cộng hòa Dân chủ", "Quần đảo Cook", "Costa Rica", "Bờ Biển Ngà", "Croatia (Hrvatska)", "Cuba", "Síp", "Cộng hòa Séc", "Đan Mạch", "Djibouti", "Dominica", "Cộng hòa Dominican", "Đông Timor", "Ecuador", "Ai Cập", "El Salvador", "Xích đạo Guinea", "Eritrea", "Estonia", "Ethiopia", "Quần đảo Falkland (Malvinas)", "Quần đảo Faroe", "Fiji", "Phần Lan", "P.R.C","Pháp", "Georgia", "Đức", "Ghana", "Gibraltar", "Hy Lạp", "Greenland", "Grenada", "Guadeloupe", "Guam", "Guatemala", "Guinea", "Guinea-Bissau", "Guyana", "Haiti", "Quần đảo Heard và Mc Donald", "Tòa thánh  Vatican", "Honduras", "Hồng Kông", "Hungary", "Iceland", "Ấn Độ", "Indonesia", "Iran", "Iraq", "Ireland", "Israel", "Ý", "Jamaica", "Nhật Bản", "Jordan", "Kazakhstan", "Kenya", "Kiribati", "Hàn Quốc", "Kuwait", "Kyrgyzstan", "Lào", "Latvia", "Lebanon", "Lesentine", "Liberia", "Libyan Arab Jamahiriya", "Liechtenstein", "Litva", "Luxembourg", "Macau", "Macedonia", "Madagascar", "Malawi", "Malaysia", "Maldives", "Mali", "Malta", "Quần đảo Marshall", "Martinique", "Mauritania", "Mauritius", "Mayotte", "Mexico", "Micronesia, Liên bang", "Moldova, Cộng hòa", "Monaco", "Mông Cổ", "Montserrat", "Morocco", "Mozambique", "Myanmar", "Namibia", "Nauru", "Nepal", "Hà Lan", "Antilles của Hà Lan", "New Caledonia", "New Zealand", "Nicaragua", "Nigeria", "Nigeria", "Niue", "Norfolk Đảo", "Quần đảo Bắc Mariana", "Na Uy", "Ô-man", "Pakistan", "Palau", "Panama", "Papua New Guinea", "Paraguay", "Peru", "Philippines", "Pitcairn", "Ba Lan", "Bồ Đào Nha", "Puerto Rico", "Qatar", "Romania", "Liên bang Nga", "Rwanda", "Saint Kitts và Nevis", "Saint Lucia", "Saint Vincent và Grenadines", "Samoa", "San Marino", "Sao Tome và Principe", "Ả Rập Saudi", "Sénégal", "Seychelles", "Sierra Leone", "Singapore", "Slovakia (Cộng hòa Slovak)", "Slovenia", "Quần đảo Solomon", "Somalia", "Nam Phi", "Nam Georgia và quần đảo Nam Sandwich", "Tây Ban Nha", "Sri Lanka", "St. Helena", "St. Pierre và Miquelon", "Sudan", "Suriname", "Svalbard và Jan Mayen Islands", "Swaziland", "Thụy Điển", "Thụy Sĩ", "Cộng hòa Ả Rập Syria", "Đài Loan", "Tajikistan", "Tanzania", "Thái Lan", "Togo", "Tokelau", "Tonga", "Trinidad và Tobago", "Tunisia", "Thổ Nhĩ Kỳ", "Turkmenistan", "Quần đảo Turks và Caicos", "Tuvalu", "Uganda", "Ukraine", "Các tiểu vương quốc Ả Rập thống nhất", "Vương quốc Anh", "Hoa Kỳ", "Uruguay", "Uzbekistan", "Vanuatu", "Venezuela", "Việt Nam", "Quần đảo Virgin (Anh)", "Quần đảo Virgin (Mỹ)", "Quần đảo Wallis và Futuna", "Tây Sahara", "Yemen", "Nam Tư", "Zambia", "Zimbabwe");
-									sort($countries);
-									//echo $a;
-									?>
-									<select class="form-control" name="made_in" />
-										<option>---</option>
-										<?php foreach ($countries as $item) {?>
-										<option value="<?=$item?>" <?php if($products->made_in==$item){echo 'selected="selected" ';}?>><?=$item?></option>
-										<?php } ?>
-									</select>
-								</div>
-								<label class="col-sm-2 control-label">Số năm bảo hành</label>
-								<div class="col-sm-4">
-									<input type="text" class="form-control" name="guarantee" placeholder="(Số) năm bảo hành" value="<?=$products->guarantee?>"/>
-								</div>
+						<div class="form-group" style="display:none">
+							<label class="col-sm-2 control-label">Xuất xứ</label>
+							<div class="col-sm-4">
+								<?php
+								$countries = array("Chính hãng","Afghanistan", "Albania", "Algeria", "Samoa thuộc Mỹ", "Andorra", "Angola", "Anguilla", "Nam Cực", "Antigua và Barbuda", "Argentina", "Armenia", "Argentina", "Úc", "Áo", "Azerbaijan", "Bahamas", "Bahrain", "Bangladesh", "Barbados", "Belarus", "Bỉ", "Belize", "Bénin", "Bermuda", "Bhutan", "Bôlivia", "Bosnia và Herzegowina", "Botswana", "Đảo Bouvet", "Brazil", "Lãnh thổ Ấn Độ Dương thuộc Anh", "Brunei Darussalam", "Bulgaria", "Burkina Faso", "Burundi", "Campuchia", "Cameroon", "Canada", "Cape Verde", "Quần đảo Cayman", "Cộng hòa Trung Phi", "Chad", "Chile", "Trung Quốc", "Đảo Giáng sinh", "Cocos (Keeling ) Quần đảo", "Colombia", "Comoros", "Congo", "Congo, Cộng hòa Dân chủ", "Quần đảo Cook", "Costa Rica", "Bờ Biển Ngà", "Croatia (Hrvatska)", "Cuba", "Síp", "Cộng hòa Séc", "Đan Mạch", "Djibouti", "Dominica", "Cộng hòa Dominican", "Đông Timor", "Ecuador", "Ai Cập", "El Salvador", "Xích đạo Guinea", "Eritrea", "Estonia", "Ethiopia", "Quần đảo Falkland (Malvinas)", "Quần đảo Faroe", "Fiji", "Phần Lan", "P.R.C","Pháp", "Georgia", "Đức", "Ghana", "Gibraltar", "Hy Lạp", "Greenland", "Grenada", "Guadeloupe", "Guam", "Guatemala", "Guinea", "Guinea-Bissau", "Guyana", "Haiti", "Quần đảo Heard và Mc Donald", "Tòa thánh  Vatican", "Honduras", "Hồng Kông", "Hungary", "Iceland", "Ấn Độ", "Indonesia", "Iran", "Iraq", "Ireland", "Israel", "Ý", "Jamaica", "Nhật Bản", "Jordan", "Kazakhstan", "Kenya", "Kiribati", "Hàn Quốc", "Kuwait", "Kyrgyzstan", "Lào", "Latvia", "Lebanon", "Lesentine", "Liberia", "Libyan Arab Jamahiriya", "Liechtenstein", "Litva", "Luxembourg", "Macau", "Macedonia", "Madagascar", "Malawi", "Malaysia", "Maldives", "Mali", "Malta", "Quần đảo Marshall", "Martinique", "Mauritania", "Mauritius", "Mayotte", "Mexico", "Micronesia, Liên bang", "Moldova, Cộng hòa", "Monaco", "Mông Cổ", "Montserrat", "Morocco", "Mozambique", "Myanmar", "Namibia", "Nauru", "Nepal", "Hà Lan", "Antilles của Hà Lan", "New Caledonia", "New Zealand", "Nicaragua", "Nigeria", "Nigeria", "Niue", "Norfolk Đảo", "Quần đảo Bắc Mariana", "Na Uy", "Ô-man", "Pakistan", "Palau", "Panama", "Papua New Guinea", "Paraguay", "Peru", "Philippines", "Pitcairn", "Ba Lan", "Bồ Đào Nha", "Puerto Rico", "Qatar", "Romania", "Liên bang Nga", "Rwanda", "Saint Kitts và Nevis", "Saint Lucia", "Saint Vincent và Grenadines", "Samoa", "San Marino", "Sao Tome và Principe", "Ả Rập Saudi", "Sénégal", "Seychelles", "Sierra Leone", "Singapore", "Slovakia (Cộng hòa Slovak)", "Slovenia", "Quần đảo Solomon", "Somalia", "Nam Phi", "Nam Georgia và quần đảo Nam Sandwich", "Tây Ban Nha", "Sri Lanka", "St. Helena", "St. Pierre và Miquelon", "Sudan", "Suriname", "Svalbard và Jan Mayen Islands", "Swaziland", "Thụy Điển", "Thụy Sĩ", "Cộng hòa Ả Rập Syria", "Đài Loan", "Tajikistan", "Tanzania", "Thái Lan", "Togo", "Tokelau", "Tonga", "Trinidad và Tobago", "Tunisia", "Thổ Nhĩ Kỳ", "Turkmenistan", "Quần đảo Turks và Caicos", "Tuvalu", "Uganda", "Ukraine", "Các tiểu vương quốc Ả Rập thống nhất", "Vương quốc Anh", "Hoa Kỳ", "Uruguay", "Uzbekistan", "Vanuatu", "Venezuela", "Việt Nam", "Quần đảo Virgin (Anh)", "Quần đảo Virgin (Mỹ)", "Quần đảo Wallis và Futuna", "Tây Sahara", "Yemen", "Nam Tư", "Zambia", "Zimbabwe");
+								sort($countries);
+								//echo $a;
+								?>
+								<select class="form-control" name="made_in" />
+									<option>---</option>
+									<?php foreach ($countries as $item) {?>
+									<option value="<?=$item?>" <?php if($products->made_in==$item){echo 'selected="selected" ';}?>><?=$item?></option>
+									<?php } ?>
+								</select>
 							</div>
-							<div class="form-group">
-								<label class="col-sm-2 control-label">Nhãn hiệu</label>
-								<div class="col-sm-4">
-									<select class="form-control" name="brand" />
-										<?php if ($brands) {foreach ($brands as $i) {?>
-										<option value="<?=$i->id?>" <?php if($products->brand==$i->id){echo 'selected="selected" ';}?>><?=$i->name?></option>
-										<?php }} ?>
-									</select>
-								</div>
+							<label class="col-sm-2 control-label">Số năm bảo hành</label>
+							<div class="col-sm-4">
+								<input type="text" class="form-control" name="guarantee" placeholder="(Số) năm bảo hành" value="<?=$products->guarantee?>"/>
 							</div>
+						</div>
+						<div class="form-group" style="display:none">
+							<label class="col-sm-2 control-label">Nhãn hiệu</label>
+							<div class="col-sm-4">
+								<select class="form-control" name="brand" />
+									<?php if ($brands) {foreach ($brands as $i) {?>
+									<option value="<?=$i->id?>" <?php if($products->brand==$i->id){echo 'selected="selected" ';}?>><?=$i->name?></option>
+									<?php }} ?>
+								</select>
+							</div>
+						</div>
 						<div class="form-group">
 							<label class="col-sm-2 control-label">Mô tả ngắn:</label>
 							<div class="col-sm-10">
@@ -134,19 +134,19 @@
 								<textarea class="form-control ckeditor" name="description" rows="10"><?=$products->description?></textarea>
 							</div>
 						</div>
-						<div class="form-group">
+						<div class="form-group" style="display:none">
 							<label class="col-sm-2 control-label">Thông số chi tiết</label>
 							<div class="col-sm-10">
 								<textarea class="form-control ckeditor" name="specifications" rows="10"><?=$products->specifications?></textarea>
 							</div>
 						</div>
-						<div class="form-group">
+						<div class="form-group" style="display:none">
 							<label class="col-sm-2 control-label">Quà tặng</label>
 							<div class="col-sm-10">
 								<textarea class="form-control ckeditor" name="extra_des" rows="10"><?=$products->extra_des?></textarea>
 							</div>
 						</div>
-						<div class="form-group">
+						<div class="form-group" style="display:none">
 							<label class="col-sm-2 control-label">Tags</label>
 							<div class="col-sm-10">
 								<select data-placeholder="Chọn tags..." class="chosen-select form-control" multiple style="width:100%;" tabindex="4" name="tags[]">
@@ -156,7 +156,7 @@
 								</select>
 							</div>
 						</div>
-						<div class="form-group">
+						<div class="form-group" style="display:none">
 							<label class="col-sm-2 control-label">Video đính kèm</label>
 							<div class="col-sm-10">
 								<select data-placeholder="Thêm video..." class="chosen-select form-control" style="width:100%;" tabindex="4" name="videos">
@@ -166,7 +166,7 @@
 								</select>
 							</div>
 						</div>
-						<div class="form-group">
+						<div class="form-group" style="display:none">
 							<label class="col-sm-2 control-label">Phụ kiện</label>
 							<div class="col-sm-10">
 								<select data-placeholder="Chọn phụ kiện phù hợp sản phẩm..." class="chosen-select form-control" multiple style="width:100%;" tabindex="4" name="combo[]">

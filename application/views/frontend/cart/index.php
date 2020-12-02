@@ -4,7 +4,7 @@
 				<section class="breadcrumbs">
 					<div class="container">
 						<div class="bc-content">
-							<a href="https://artkeyuniverse.com">Home</a><span class="slash-divider">/</span>
+							<a href="<?=base_url()?>">Home</a><span class="slash-divider">/</span>
 							<span class="bread-current">Cart</span>
 						</div>
 					</div>
@@ -77,7 +77,11 @@
 												<input title="details_tax" name="details_tax" type="hidden" value="0">
 												<input title="details_subtotal" name="details_subtotal" type="hidden" value="<?=@$total_amount;?>">
 												<?php } ?>
-												<button type="submit" name="submit" class="btn btn-buy_now btn-full"><i class="fab fa-paypal"></i> Paynow with Paypal</button>
+												<button type="submit" name="submit" class="btn-order" id="btn_complete_order">
+													<span>
+														<i class="fab fa-paypal"></i>  Paynow with Paypal
+													</span>
+												</button>
 												<small class="form-text text-muted text-center"></small>
 											</form>
 										</div>

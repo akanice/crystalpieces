@@ -81,7 +81,7 @@ class News extends MY_Controller {
     }
 
 	public function home() {
-		$this->data['title'] = 'Bếp Thành Vinh - Blog';
+		$this->data['title'] = 'CrystalPieces - Blog';
 		$total = count($this->newsmodel->read());
         $per_page = 16;
         list($this->data['page_links'],$start)	= $this->newsmodel->pagination('blog/','',$total,$per_page,2);

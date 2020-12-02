@@ -52,12 +52,12 @@
 													</a>
 													<ul class="sub">
 														<li class="">
-															<a href="#/shop">
+															<a href="<?=base_url('shop')?>">
 																<div class="main-menu-title">SHOP</div>
 															</a>
 														</li>
 														<li class="">
-															<a href="#/commissions">
+															<a href="#">
 																<div class="main-menu-title">
 																	COMMISSION
 																</div>
@@ -66,12 +66,12 @@
 													</ul>
 												</li>
 												<li class="">
-													<a href="#/gallery">
+													<a href="#">
 														<div class="main-menu-title">CATALOGUE</div>
 													</a>
 												</li>
 												<li class="">
-													<a href="#/blog">
+													<a href="<?=base_url('blog')?>">
 														<div class="main-menu-title">BLOG</div>
 													</a>
 												</li>
@@ -81,9 +81,8 @@
 														<span class="open-sub"></span>
 													</a>
 													<ul class="sub">
-														<li class=""><a href="#/support">FAQ</a></li>
-														<li class=""><a href="#/contact-us">LIÊN HỆ</a></li>
-														<li class=""><a href="#/shippingandreturn">CHÍNH SÁCH BẢO HÀNH</a></li>
+														<li class=""><a href="#">FAQ</a></li>
+														<li class=""><a href="#">CONTACT</a></li>
 													</ul>
 												</li>
 												

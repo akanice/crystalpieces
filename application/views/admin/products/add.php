@@ -73,7 +73,7 @@
                                     </select>
                                 </div>
                             </div>
-							<div class="form-group">
+							<div class="form-group" style="display:none">
 								<label class="col-sm-2 control-label">Xuất xứ</label>
 								<div class="col-sm-4">
 									<?php
@@ -93,7 +93,7 @@
 									<input type="text" class="form-control" name="guarantee" placeholder="(Số) năm bảo hành"/>
 								</div>
 							</div>
-							<div class="form-group">
+							<div class="form-group" style="display:none">
 								<label class="col-sm-2 control-label">Nhãn hiệu</label>
 								<div class="col-sm-4">
 									<select class="form-control" name="brand" />
@@ -115,19 +115,19 @@
                                     <textarea class="form-control ckeditor" name="description" rows="10"></textarea>
                                 </div>
                             </div>
-							<div class="form-group">
+							<div class="form-group" style="display:none">
                                 <label class="col-sm-2 control-label">Thông số chi tiết</label>
                                 <div class="col-sm-10">
                                     <textarea class="form-control ckeditor" name="specifications" rows="10"></textarea>
                                 </div>
                             </div>
-							<div class="form-group">
+							<div class="form-group" style="display:none">
 								<label class="col-sm-2 control-label">Quà tặng</label>
 								<div class="col-sm-10">
 									<textarea class="form-control ckeditor" name="extra_des" rows="2"></textarea>
 								</div>
 							</div>
-                            <div class="form-group">
+                            <div class="form-group" style="display:none">
                                 <label class="col-sm-2 control-label">Tags</label>
                                 <div class="col-sm-10">
                                     <select data-placeholder="Thêm tags..." class="chosen-select form-control" multiple style="width:100%;" tabindex="4" name="tags[]">
@@ -137,7 +137,7 @@
                                     </select>
                                 </div>
                             </div>
-							<div class="form-group">
+							<div class="form-group" style="display:none">
                                 <label class="col-sm-2 control-label">Video đính kèm</label>
                                 <div class="col-sm-10">
                                     <select data-placeholder="Thêm video..." class="chosen-select form-control" style="width:100%;" tabindex="4" name="videos">
@@ -147,7 +147,7 @@
                                     </select>
                                 </div>
                             </div>
-							<div class="form-group">
+							<div class="form-group" style="display:none">
                                 <label class="col-sm-2 control-label">Phụ kiện</label>
                                 <div class="col-sm-10">
                                     <select data-placeholder="Chọn phụ kiện phù hợp sản phẩm..." class="chosen-select form-control" multiple style="width:100%;" tabindex="4" name="combo[]">

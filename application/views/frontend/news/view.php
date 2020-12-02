@@ -24,7 +24,7 @@
 							<div class="col-md-8 offset-md-2 blog-page blog-detail">
 								<div class="inner">
 									<h1 class="title"><?=@$new_data->title?></h1>
-									<div class="blog-date"><small><i class="fa fa-calendar"></i> <?php echo date_format(date_create($new_data->create_time),"d/m/Y"); ?></small></div>
+									<div class="blog-date"><small><i class="fa fa-calendar"></i> Publish date: <?php echo date_format(date_create($new_data->create_time),"d/m/Y"); ?></small></div>
 									<?php if ($new_data->thumb != '') {?><div class="blog-thumb" style="background-image:url(<?=base_url($new_data->image);?>)"></div><?php }?>
 									
 									<div class="">

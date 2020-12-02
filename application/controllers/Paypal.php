@@ -63,7 +63,7 @@ class Paypal extends MY_Controller
         $itemList->setItems(array($item1));
 		
 		// Set shipping address
-		$shipping_address['recipient_name'] = 'Beckham';
+		$shipping_address['recipient_name'] = $this->input->post('item_name');
 		$shipping_address['city'] = 'Ha Noi';
 		$shipping_address['state'] = '';
 		$shipping_address['postal_code'] = '100000';

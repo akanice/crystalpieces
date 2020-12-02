@@ -99,15 +99,15 @@ class Products extends MY_Controller{
 				"sku" 								=> $this->input->post("sku"),
 				"description" 				=> $this->input->post("description"),
 				"short_description" 		=> $this->input->post("short_description"),
-				"specifications" 			=> $this->input->post("specifications"),
-				"made_in" 					=> $this->input->post("made_in"),
-				"guarantee" 					=> $this->input->post("guarantee"),
-				"extra_des" 					=> $this->input->post("extra_des"),
-				"brand" 							=> $this->input->post("brand"),
-				"price"							=> $this->input->post("price"),
-				"sale_price" 					=> $this->input->post("sale_price"),
-				"listed_price" 				=> $this->input->post("listed_price"),
-				"featured" 						=> $this->input->post("featured"),
+				"specifications" 			=> @$this->input->post("specifications"),
+				"made_in" 					=> @$this->input->post("made_in"),
+				"guarantee" 					=> @$this->input->post("guarantee"),
+				"extra_des" 					=> @$this->input->post("extra_des"),
+				"brand" 							=> @$this->input->post("brand"),
+				"price"							=> @$this->input->post("price"),
+				"sale_price" 					=> @$this->input->post("sale_price"),
+				"listed_price" 				=> @$this->input->post("listed_price"),
+				"featured" 						=> @$this->input->post("featured"),
 				"type" 							=> 'product',
 				"meta_title" 					=> $this->input->post("meta_title"),
 				"meta_description" 		=> $this->input->post("meta_description"),
@@ -120,14 +120,14 @@ class Products extends MY_Controller{
 			$this->productsmodel->update(array('alias'=>make_alias($this->input->post("title").'-'.$product_id)),array('id'=>$product_id));
 
 			// Create new tag_term
-			$tags = json_encode($this->input->post("tags"));
-			if ($tags && $tags != '') {
-				$this->tagstermmodel->create(array('type'=>'product','term_id'=>$product_id,'tag_id'=>$tags));
-			}
+			// $tags = json_encode(@$this->input->post("tags"));
+			// if ($tags && $tags != '') {
+				// $this->tagstermmodel->create(array('type'=>'product','term_id'=>$product_id,'tag_id'=>$tags));
+			// }
 			
-			$this->attachData($product_id, 'file_attach', $this->input->post("files"));
-			$this->attachData($product_id, 'video_attach', $this->input->post("videos"));
-			$this->attachData($product_id, 'actual_image', json_encode($this->input->post("actual_image")));
+			// $this->attachData($product_id, 'file_attach', $this->input->post("files"));
+			// $this->attachData($product_id, 'video_attach', $this->input->post("videos"));
+			// $this->attachData($product_id, 'actual_image', json_encode($this->input->post("actual_image")));
 			
 			// redirect(base_url() . "admin/products");
 			redirect(base_url() . "admin/products/edit/".$product_id);
@@ -190,15 +190,15 @@ class Products extends MY_Controller{
 				"sku" 								=> $this->input->post("sku"),
 				"description" 				=> $this->input->post("description"),
 				"short_description" 		=> $this->input->post("short_description"),
-				"specifications" 			=> $this->input->post("specifications"),
-				"made_in" 					=> $this->input->post("made_in"),
-				"guarantee" 					=> $this->input->post("guarantee"),
-				"extra_des" 					=> $this->input->post("extra_des"),
-				"brand" 							=> $this->input->post("brand"),
-				"price"							=> $this->input->post("price"),
-				"sale_price" 					=> $this->input->post("sale_price"),
-				"listed_price" 				=> $this->input->post("listed_price"),
-				"featured" 						=> $this->input->post("featured"),
+				"specifications" 			=> @$this->input->post("specifications"),
+				"made_in" 					=> @$this->input->post("made_in"),
+				"guarantee" 					=> @$this->input->post("guarantee"),
+				"extra_des" 					=> @$this->input->post("extra_des"),
+				"brand" 							=> @$this->input->post("brand"),
+				"price"							=> @$this->input->post("price"),
+				"sale_price" 					=> @$this->input->post("sale_price"),
+				"listed_price" 				=> @$this->input->post("listed_price"),
+				"featured" 						=> @$this->input->post("featured"),
 				"type" 							=> $this->input->post("type"),
 				"meta_title" 					=> $this->input->post("meta_title"),
 				"meta_description" 		=> $this->input->post("meta_description"),
@@ -209,15 +209,15 @@ class Products extends MY_Controller{
 			$this->productsmodel->update(array('alias'=>make_alias($this->input->post("title").'-'.$id)),array('id'=>$id));
 
 			// Create new tag_term
-			$tags = json_encode($this->input->post("tags"));
-			if ($tags && $tags != '') {
-				$temp1 = $this->tagstermmodel->read(array('type'=>'product','term_id'=>$id),array(),true);
-				if(!$temp1) {
-					$this->tagstermmodel->create(array('type'=>'product','term_id'=>$id,'tag_id'=>$tags));
-				} else {
-					$this->tagstermmodel->update(array('tag_id'=>$tags),array('type'=>'product','term_id'=>$id));
-				}
-			}
+			// $tags = json_encode($this->input->post("tags"));
+			// if ($tags && $tags != '') {
+				// $temp1 = $this->tagstermmodel->read(array('type'=>'product','term_id'=>$id),array(),true);
+				// if(!$temp1) {
+					// $this->tagstermmodel->create(array('type'=>'product','term_id'=>$id,'tag_id'=>$tags));
+				// } else {
+					// $this->tagstermmodel->update(array('tag_id'=>$tags),array('type'=>'product','term_id'=>$id));
+				// }
+			// }
 			
 			// Product variation
 			if ($this->data['cat_custom_field'] != '') foreach ($this->data['cat_custom_field'] as $d) {

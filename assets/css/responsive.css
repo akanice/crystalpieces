@@ -53,6 +53,9 @@
 	#home-page .sale-schedule-wapper {
 		padding: 30px 0;
 	}
+	.blog-page .inner {
+		padding: 15px 0 30px 0;
+	}
 	.item-product {
 		padding-left: 5px;
 		padding-right: 5px;
