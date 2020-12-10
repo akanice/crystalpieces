@@ -80,15 +80,15 @@
 						<span class="text-special" title="Product">Product</span>
 					</div>
 					<div class="sale-items-wrapper upcoming-product">
-						<div class="ucm-item-home wow fadeIn d-flex flex-row">
-							<div class="ucm-image-w flex-fill">
+						<div class="ucm-item-home wow fadeIn row">
+							<div class="ucm-image-w col-12 col-sm-5 col-lg-6">
 								<div class="ucm-prev-img">
 									<a href="#">
 										<img src="/assets/img/sample_blog_thumb2.jpg" alt="img">
 									</a>
 								</div>
 							</div>
-							<div class="ucm-title-w">
+							<div class="ucm-title-w col-12 col-sm-7 col-lg-6">
 								<div class="ucm-prev-title">
 									<h3><a href="#">Sirius Story - From Zero to One</a></h3>
 								</div>

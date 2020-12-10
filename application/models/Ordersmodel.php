@@ -236,6 +236,45 @@ class OrdersModel extends MY_Model {
 		return json_encode($rs);
 	}
 	
+	public function getOrderByPaypal($code,$customer,$phone,$email,$status,$payerstatus,$limit, $offset) {
+		$this->db->select('orders.*,payments.*');
+		$this->db->join('payments', 'orders.code = payments.paymentID', 'left');
+		// $this->db->join('customers', 'orders.customer_id = customers.id', 'left');
+		if($code){
+            $this->db->like('orders.code', $code);
+        }
+		if($customer){
+            $this->db->like('orders.name', $customer);
+        }
+		if($phone){
+            $this->db->like('orders.phone', $phone);
+        }
+		if($email){
+            $this->db->like('orders.email', $email);
+        }
+		if($status){
+            $this->db->like('orders.status', $status);
+        }
+		if($payerstatus && ($payerstatus == 'VERIFIED')){
+            $this->db->like('payments.PayerStatus', $payerstatus);
+        }
+		if ($limit){
+			if ($offset){
+				$this->db->limit($limit,$offset);
+			}else{
+				$this->db->limit($limit);
+			}
+		}
+		$this->db->order_by('orders.create_time', 'DESC');
+		$query = $this->db->get('orders',$limit,$offset);
+		if($query->num_rows() > 0)  {
+			$data = $query->result();
+			return $data;
+		} else {
+			return false;
+		}
+	}
+	
 	public function getOrdersToExport($from, $to) {
 		$this->db->select('orders.*,customers.email as customer_email,
 							customers.name as customer_name,

@@ -24,13 +24,15 @@ class Orders extends MY_Controller{
     public function index(){
         $this->data['title'] 				= 'Quản lý đơn hàng';
 
-        $this->data['code'] 			= $this->input->get('code');
-        $this->data['name'] 			= $this->input->get('name');
-        $this->data['phone'] 			= $this->input->get('phone');
-        $this->data['status'] 			= $this->input->get('status');
+        $this->data['code'] 				= @$this->input->get('code');
+        $this->data['name'] 				= @$this->input->get('name');
+        $this->data['phone'] 			= @$this->input->get('phone');
+        $this->data['email'] 				= @$this->input->get('email');
+        $this->data['status'] 				= @$this->input->get('status');
+        $this->data['payerstatus'] 	= @$this->input->get('payerstatus');
         $total = $this->ordersmodel->getTotalOrders($this->data['code'],$this->data['name'],$this->data['phone'],$this->data['status']);
 		if (($this->data['code'] != "") or ($this->data['name'] != "") or ($this->data['phone'] != "" ) or ($this->data['status'] != '')) {
-            $config['suffix'] = '?code='.urlencode($this->data['code']).'name='.urlencode($this->data['name']).'&phone='.urlencode($this->data['phone']).'&status='.urlencode($this->data['status']);
+            $config['suffix'] = '?code='.urlencode($this->data['code']).'name='.urlencode($this->data['name']).'&phone='.urlencode($this->data['phone']).'email='.urlencode($this->data['email']).'&status='.urlencode($this->data['status']).'payerstatus='.urlencode($this->data['payerstatus']);
         }
         //Pagination
         $this->load->library('pagination');
@@ -63,7 +65,7 @@ class Orders extends MY_Controller{
         $this->data['page_links'] = $this->pagination->create_links();
         $this->data['base'] = site_url('admin/orders/');
         
-        $this->data['list'] = $this->ordersmodel->getListOrders($this->data['code'],$this->data['name'], $this->data['phone'], $this->data['status'], $config['per_page'],$start);
+        $this->data['list'] = $this->ordersmodel->getOrderByPaypal($this->data['code'],$this->data['name'],$this->data['phone'],$this->data['email'],$this->data['status'], $this->data['payerstatus'],$config['per_page'],$start);
 		
         $this->load->view('admin/common/header',$this->data);
         $this->load->view('admin/orders/list');

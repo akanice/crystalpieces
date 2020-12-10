@@ -380,7 +380,7 @@ class Ajax extends MY_Controller {
 	}
 	
 	public function add_to_cart() {
-		$this->cart->destroy();
+		//$this->cart->destroy();
 		$name = $this->input->post('product_name');
 		$name = str_replace("|",  "", $name);
 		$name = str_replace(",",  "", $name);

@@ -131,6 +131,8 @@
     max-width: 68px;
     padding-right: 20px;
     margin-bottom: 0;
+	margin-right: 20px;
+	align-items: baseline;
 }
 .table.table-cart .bootstrap-touchspin.input-group {
     margin-left: auto;
@@ -182,7 +184,7 @@
 }
 .bootstrap-touchspin .input-group-btn-vertical .bootstrap-touchspin-down {
     border-radius: 0;
-    bottom: 0;
+    top: 20px;
 	margin-bottom: 0;
 }
 .table.table-cart tfoot td {

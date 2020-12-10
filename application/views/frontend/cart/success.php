@@ -19,9 +19,9 @@
 		<div id="contents" class="main-page category_content cart_info cart_success">
 			<div class="container">
 				<div class="row clearfix">
-					<div class="col-sm-6 col-12 cart-form">
+					<div class="col-sm-6 col-12 cart-form offset-sm-3">
 						<div class="jumbotron">
-							<h3>Payment success</h3>
+							<h3>Payment success <i class="fa fa-grin-beam"></i></h3>
 							<p>Your payment was successful, thank you for purchase at <b><?=site_url()?></b></p>
 							<?php if (isset($paymentID) && ($paymentID !== '')) {?><p>Payment ID: <?=@$paymentID?></p><?php } ?>
 							<p><a href="<?=base_url()?>"><i class="fa fa-home"></i> Back to homepage</p>

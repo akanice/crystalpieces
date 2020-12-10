@@ -56,7 +56,7 @@ class Paypal extends MY_Controller
         $item1["sku"] = $this->input->post('item_number');  // Similar to `item_number` in Classic API
         $item1["description"] = $this->input->post('item_description');
         $item1["currency"] ="USD";
-        $item1["quantity"] =1;
+        $item1["quantity"] = strval($this->input->post('item_qty'));
         $item1["price"] = $this->input->post('item_price');
 
         $itemList = new ItemList();
@@ -174,7 +174,7 @@ class Paypal extends MY_Controller
 
         if (empty($PayerID) || empty($token)) {
             $this->session->set_flashdata('success_msg','Payment failed');
-            redirect('paypal/index');
+            redirect('paypal/cancel');
         }
 
         $payment = Payment::get($payment_id,$this->_api_context);
@@ -217,7 +217,7 @@ class Paypal extends MY_Controller
             /** it's all right **/
             /** Here Write your database logic like that insert record or value in database if you want **/
             $this->paypal->create($payment_id,$Total,$Subtotal,$Tax,$PaymentMethod,$PayerStatus,$PayerMail,$saleId,$CreateTime,$UpdateTime,$State);
-			
+			$this->ordersmodel->update(array('status'=>'pay_success'),array('code'=>$payment_id));
             $this->session->set_flashdata('success_msg','Payment success');
             $this->session->set_flashdata('payment_id',$payment_id);
             redirect('paypal/success');
@@ -233,6 +233,8 @@ class Paypal extends MY_Controller
 		$this->load->view('frontend/index', $this->data);
     }
     function cancel(){
+		
+		$this->data['title'] = 'Payment cancelled';
         $this->data['temp'] = 'frontend/cart/cancel';
 		$this->load->view('frontend/index', $this->data);
     }

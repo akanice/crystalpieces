@@ -955,10 +955,9 @@ a {
 	display: flex;
 }
 .ucm-image-w {
-	max-width: 520px;
 }
 .ucm-prev-img {
-	padding-right: 30px;
+	padding-bottom: 15px;
 }
 .ucm-prev-title h3 {
 	font-size: 36px;

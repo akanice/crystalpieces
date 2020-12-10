@@ -66,6 +66,7 @@
 										<th width=''>Note</th>
 										<th width=''>Tổng tiền</th>
 										<th width=''>Trạng thái</th>
+										<th width=''>Thanh toán</th>
 										<th>Hành động</th>
 									</tr>
 									</thead>
@@ -76,7 +77,7 @@
 											<td width=''><input type="text" class="form-control" placeholder="Mã đơn hàng" name="code" value="<?=@$code?>"></td>
 											<td width=''><input type="text" class="form-control" placeholder="Họ tên" name="name" value="<?=@$name?>"></td>
 											<td width=''><input type="text" class="form-control" placeholder="Số điện thoại" name="phone" value="<?=@$phone?>"></td>
-											<td width=''></td>
+											<td width=''><input type="text" class="form-control" placeholder="Email" name="email" value="<?=@$email?>"></td>
 											<td width=''></td>
 											<td width=''></td>
 											<td width=''></td>
@@ -86,6 +87,12 @@
 													<option value="process" <?php if ($status=='process') echo 'selected';?>>Đang xử lý</option>
 													<option value="confirmed" <?php if ($status=='confirmed') echo 'selected';?>>Hoàn tất</option>
 													<option value="closed" <?php if ($status=='closed') echo 'selected';?>>Đóng</option>
+												</select>
+											</td>
+											<td>
+												<select name="payerstatus" class="form-control">
+													<option value="" <?php if ($payerstatus!=='VERIFIED') echo 'selected';?>>Tất cả</option>
+													<option value="VERIFIED" <?php if ($payerstatus=='VERIFIED') echo 'selected';?>>Đã thanh toán</option>
 												</select>
 											</td>
 											<td width='' style="text-align: center"><button type="submit" class="btn btn-fill btn-default">Tìm kiếm</button></td>
@@ -102,7 +109,7 @@
 											<td><?=@$item->email?></td>
 											<td><?=@$item->address?></td>
 											<td><?=@$item->note?></td>
-											<td><?=@number_format($item->total_price,0,',','.')?></td>
+											<td><?=@number_format($item->total_price,0,',','.')?> $</td>
 											<td id="td_status_<?=@$item->id?>"><?php 
 												switch ($item->status) {
 													case 'pending':
@@ -122,6 +129,16 @@
 														break;
 													default:
 														$status =  'Mới';$extra_class = 'color_default';
+												}
+												echo '<span class="'.$extra_class.'">'.$status.'</span>';
+											?></td>
+											<td id="td_status_<?=@$item->PayerStatus?>"><?php 
+												switch ($item->PayerStatus) {
+													case 'VERIFIED':
+														$status = 'Đã thanh toán';$extra_class = 'color_green';
+														break;
+													default:
+														$status =  'Chưa thanh toán';$extra_class = 'color_default';
 												}
 												echo '<span class="'.$extra_class.'">'.$status.'</span>';
 											?></td>
