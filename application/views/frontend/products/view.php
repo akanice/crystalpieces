@@ -90,10 +90,14 @@
 										<div class="border-product">
 											<h5 class="product-title">Select Variant:</h5>
 											<div class="variant clearfix">
+												<div class="variant-col">
+													<div data-v_title="<?=@$product_data->sku?>" data-v_price="<?=@$product_data->price?>" data-v_id="<?=@$product_data->id?>" style="background-image:url('<?=@base_url($product_data->thumb)?>')" class="variant-item" title="<?=@$product_data->sku?>"></div>
+													<div class="variant-text center"><?=@$product_data->sku?></div>
+												</div>
 												<?php foreach ($variant as $item) {?>
 												<div class="variant-col">
-													<div data-v_title="<?=@$item->prodcode?>" data-v_price="<?=@$item->prodprice?>" style="background-image:url('<?=@base_url('assets/uploads/'.$item->prodimage)?>')" class="variant-item" title="<?=@$item->prodcode?>"></div>
-													<div class="variant-text center"><?=@$item->prodcode?></div>
+													<div data-v_title="<?=@$item->sku?>" data-v_price="<?=@$item->price?>" data-v_id="<?=@$item->id?>" style="background-image:url('<?=@base_url('assets/uploads/'.$item->image)?>')" class="variant-item" title="<?=@$item->sku?>"></div>
+													<div class="variant-text center"><?=@$item->sku?></div>
 												</div>
 												<?php } ?>
 											</div>
@@ -101,7 +105,7 @@
 										<?php } ?>
 										<div class="product-buy mb-3">
 											<div class="first">
-												<button type="button" class="btn-order" id="btn_complete_order" data-product_id="<?=@$product_data->id?>" data-product_name="<?=@$product_data->title?>" data-product_quantity="1" data-product_extra_des="" data-product_thumb="<?=@$product_data->thumb?>" data-product_price="<?=@$product_data->price?>">
+												<button type="button" class="btn-order" id="btn_complete_order" data-product_id="<?=@$product_data->id?>" data-product_name="<?=@$product_data->title.'-'.@$product_data->sku?>" data-product_quantity="1" data-product_extra_des="" data-product_thumb="<?=@$product_data->thumb?>" data-product_price="<?=@$product_data->price?>">
 													<span>
 														Order now
 													</span>
@@ -175,13 +179,17 @@
 				$('.variant-item').removeClass('active');
 				$(this).addClass('active');
 				var t_price = $(this).data('v_price');
+				var t_id = $(this).data('v_id');
 				$('#prod_price').html('$ '+t_price);
-				$('#btn_complete_order').data('product_price',t_price);
+				$('#btn_complete_order').data({
+					'product_id':t_id,
+					'product_price':t_price
+				});
 			});
 			$('.product-slick').slick({
 				slidesToShow: 1,
 				slidesToScroll: 1,
-				arrows: false,
+				arrows: true,
 				fade: true,
 				asNavFor: '.slider-nav'
 			});

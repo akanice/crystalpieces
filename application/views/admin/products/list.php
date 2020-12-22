@@ -77,7 +77,7 @@
 											<td><?php if (@$item->type == 'product') {echo '<span class="">Sản phẩm</span>';} else {echo '<span class="text-primary">Phụ kiện</span>';}?></td>
 											<td><?=@$item->cat_name?></td>
 											<td><?php if ($item->featured == 1) {echo '<i class="fa fa-check"></i>';}?></td>
-											<td><?=@$item->sale_price?> - <span style="text-decoration: line-through"><small><?=@$item->price?></small></span></td>
+											<td>$ <?=@$item->price?></td>
 											<td style="text-align: center">
 												<a href="<?=@base_url('admin/products/edit/'.$item->id)?>" class="btn btn-fill btn-sm btn-info"><i class="fa fa-pencil"></i> Sửa</a>
 												<a href="<?=@base_url('admin/products/duplicate/'.$item->id)?>" class="btn btn-fill btn-sm btn-success"><i class="fa fa-pencil"></i> Duplicate</a>

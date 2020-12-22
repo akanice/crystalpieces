@@ -45,7 +45,7 @@ class Home extends MY_Controller {
 		$this->data['categories'] = $this->productscategorymodel->read(array('parent_id' => 0), array(), false);
 
 		// Load featured/newest products
-		$this->data['mostviewed'] = $this->productsmodel->read(array('featured'=>1,'type'=>'product'),array('id'=>false),false,12);
+		$this->data['mostviewed'] = $this->productsmodel->read(array('featured'=>1,'type'=>'product'),array('id'=>false),false,4);
 		
 		// die();
 		// Load partner brand

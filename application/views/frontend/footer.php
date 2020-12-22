@@ -17,7 +17,7 @@
 								<img src="/assets/img/logo_main.png" class="logo_footer">
 							</picture>
 						</div>
-						<div class="footer-left-right" style="background-image: url('/assets/img/footer-pattern-3.1.png')">
+						<div class="footer-left-right" style="">
 						</div>
 					</div>
 					<div class="footer-right">

@@ -42,12 +42,12 @@
 											<ul class="nav navbar-nav header-menu-container-nav">
 												<li class="">
 													<a href="<?=base_url('#')?>">
-														<div class="main-menu-title">VỀ CHÚNG TÔI</div>
+														<div class="main-menu-title">ABOUT US</div>
 													</a>
 												</li>
 												<li class="parent parent-shop" >
 													<a href="#">
-														<div class="main-menu-title">SẢN PHẨM <span class="arrow-down-small more-link-icon"></span></div>
+														<div class="main-menu-title">PRODUCT <span class="arrow-down-small more-link-icon"></span></div>
 														<span class="open-sub"></span>
 													</a>
 													<ul class="sub">
@@ -65,11 +65,11 @@
 														</li>
 													</ul>
 												</li>
-												<li class="">
+												<!--<li class="">
 													<a href="#">
 														<div class="main-menu-title">CATALOGUE</div>
 													</a>
-												</li>
+												</li>-->
 												<li class="">
 													<a href="<?=base_url('blog')?>">
 														<div class="main-menu-title">BLOG</div>
@@ -77,7 +77,7 @@
 												</li>
 												<li class="parent">
 													<a href="#">
-														<div class="main-menu-title">HỖ TRỢ <span class="arrow-down-small more-link-icon"></span></div>
+														<div class="main-menu-title">SUPPORT <span class="arrow-down-small more-link-icon"></span></div>
 														<span class="open-sub"></span>
 													</a>
 													<ul class="sub">
@@ -101,13 +101,13 @@
 											<img src="https://artkeyuniverse.com/images/icon/shopping-cart.svg" class="svg-small mr-4">
 											<span>
 												<span class="text-cart-number">Cart (</span>
-												<span id="mini-cart-total" class="number-item-in-cart">0</span>
+												<span id="mini-cart-total" class="number-item-in-cart"><?php echo $this->cart->total_items();?></span>
 												<span class="text-cart-number">)</span>
 											</span>
 										</div>
 									</button>
 									<div class="dropdown-menu dropdown-menu-right widget_shopping_cart menu-background" aria-labelledby="dropdownMenuButton">
-										<img src="https://artkeyuniverse.com/images/icon/close.svg" class="close-icon-shopping-cart">
+										<img src="/assets/img/close.png" class="close-icon-shopping-cart">
 										<ul class="cart_product_list_widget">
 											<li class="mini_cart_item">
 												<table class="table table-striped" id="tblCart">
@@ -116,10 +116,9 @@
 												</table>
 											</li>
 										</ul>
-										<p class="product-total text-right"><strong>Subtotal: </strong><span id="spTotal">$0.00</span></p>
+										<p class="product-total text-right"><strong>Subtotal: </strong><span id="spTotal">$<?=number_format($this->cart->total(),0,',','.')?></span></p>
 										<p class="text-right">
-											<a href="#/shop/cart" class="w-100-767 mb-10 btn-gray">VIEW CART</a>
-											<a href="#/shop/checkout" class="w-100-767 mb-10 btn-yellow">CHECKOUT</a>
+											<a href="<?=base_url('cart')?>" class="w-100-767 mb-10 btn-yellow">CHECKOUT</a>
 										</p>
 									</div>
 								</div>

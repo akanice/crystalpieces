@@ -35,10 +35,10 @@ class Products extends MY_Controller{
         if(($this->data['name'] != "") or ($this->data['category'] != "")){
 			$config['suffix'] = '?name='.urlencode($this->data['name']).'&category='.urlencode($this->data['category']);
 			list($this->data['page_links'],$start) = $this->productsmodel->pagination('admin/products',$config['suffix'],$total,$per_page,3);
-            $this->data['list'] = $this->productsmodel->getListProducts('',$this->input->get('name'),$this->data['category'],$per_page,$start);
+            $this->data['list'] = $this->productsmodel->getListProducts('product',$this->input->get('name'),$this->data['category'],$per_page,$start);
         }else{
 			list($this->data['page_links'],$start) = $this->productsmodel->pagination('admin/products',$config['suffix'],$total,$per_page,3);
-            $this->data['list'] = $this->productsmodel->getListProducts('','','',$per_page,$start);
+            $this->data['list'] = $this->productsmodel->getListProducts('product','','',$per_page,$start);
         }
         $this->data['base'] = site_url('admin/products/');
         $this->load->view('admin/common/header',$this->data);
@@ -90,6 +90,7 @@ class Products extends MY_Controller{
 			if (!$categories || $categories == '') {$categories = '["0"]';}
 			
 			$data = array(
+				"parent_id"					=> 0,
 				"title"								=> $this->input->post("title"),
 				"alias" 							=> make_alias($this->input->post("title")),
 				"categoryid"					=> $categories,
@@ -210,14 +211,23 @@ class Products extends MY_Controller{
 
 			// Product variation
 			$pricingPackage = $this->input->post("pricingPackage");			
-			$pricingPackage = json_encode($pricingPackage, JSON_UNESCAPED_UNICODE);
-			$temp = $this->productsattachmodel->read(array('product_id'=>$id,'attachdata'=>'variant'),array(),true);
-			if (!isset($temp) or $temp == '') {
-				$this->productsattachmodel->create(array('attachdata'=>'variant', 'value'=>$pricingPackage,'product_id'=>$id));
-			} else {
-				$this->productsattachmodel->update(array('attachdata'=>'variant', 'value'=>$pricingPackage),array('id'=>$temp->id));
-			}
+			// $pricingPackage = json_encode($pricingPackage, JSON_UNESCAPED_UNICODE);
+			// $temp = $this->productsattachmodel->read(array('product_id'=>$id,'attachdata'=>'variant'),array(),true);
+			// if (!isset($temp) or $temp == '') {
+				// $this->productsattachmodel->create(array('attachdata'=>'variant', 'value'=>$pricingPackage,'product_id'=>$id));
+			// } else {
+				// $this->productsattachmodel->update(array('attachdata'=>'variant', 'value'=>$pricingPackage),array('id'=>$temp->id));
+			// }
+			if ($pricingPackage && $pricingPackage != '') { foreach ($pricingPackage as $item) {
+				$data=array('parent_id'=>$id,'sku'=>$item['prodcode'],'price'=>$item['prodprice'],'image'=>$item['prodimage'],'thumb'=>$item['prodimage'],'type'=>'variant');
+				if (@$item['prodid']) {
+					$this->productsmodel->update($data,array('id'=>$item['prodid']));
+				} else {
+					$this->productsmodel->create($data);
+				}
+			}}
 			
+			// die();
 			// File Attach
 			
 			redirect(base_url() . "admin/products/edit/".$id);
@@ -321,7 +331,7 @@ class Products extends MY_Controller{
 		$this->data['p_video_attach'] = @$this->productsattachmodel->read(array('product_id'=>$id,'attachdata'=>'video_attach'),array(),true)->value;
 		$this->data['actual_image'] = @($this->productsattachmodel->read(array('product_id'=>$id,'attachdata'=>'actual_image'),array(),true)->value);
 		
-		$this->data['pricingPackage'] = @json_decode($this->productsattachmodel->read(array('product_id'=>$id,'attachdata'=>'variant'),array(),true)->value);
+		$this->data['pricingPackage'] = $this->productsmodel->read(array('parent_id'=>$id),array(),false);
 		
 	}
 	

@@ -20,7 +20,7 @@ class Products extends MY_Controller {
         $per_page = 20;
         list($this->data['page_links'],$start)	= $this->productsmodel->pagination('shop/','',$total,$per_page,2);
         $this->data['page_links'] 					= $this->pagination->create_links();
-		$this->data['products'] 						= $this->productsmodel->read(array(),array(),false,$per_page,$start);
+		$this->data['products'] 						= $this->productsmodel->read(array('type'=>'product'),array(),false,$per_page,$start);
 		
         $this->data['temp'] = 'frontend/products/index';
 		$this->load->view('frontend/index', $this->data);
@@ -115,7 +115,7 @@ class Products extends MY_Controller {
 			// Load file_attach
 			$this->data['file_attach'] = @$this->productsattachmodel->read(array('product_id'=>$this->data['product_data']->id,'attachdata'=>'file_attach'),array(),true)->value;
 			$this->data['actual_image'] = @$this->productsattachmodel->read(array('product_id'=>$this->data['product_data']->id,'attachdata'=>'actual_image'),array(),true)->value;
-			$this->data['variant'] = json_decode($this->productsattachmodel->read(array('product_id'=>$this->data['product_data']->id,'attachdata'=>'variant'),array(),true)->value);
+			$this->data['variant'] = $this->productsmodel->read(array('parent_id'=>$this->data['product_data']->id,'type'=>'variant'),array(),false);
 			@$video_id = $this->productsattachmodel->read(array('product_id'=>$this->data['product_data']->id,'attachdata'=>'video_attach'),array(),true)->value;
 			$this->data['video_attach'] = $this->videosmodel->read(array('id'=>$video_id),array(),true);
 			

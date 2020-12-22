@@ -265,3 +265,7 @@
 [18-12-2020 07:55:11] PayPal\Core\PayPalHttpConnection : INFO: POST https://api.sandbox.paypal.com/v1/payments/payment
 [18-12-2020 07:55:13] PayPal\Core\PayPalHttpConnection : INFO: Response Status 	: 400
 [18-12-2020 07:55:13] PayPal\Core\PayPalHttpConnection : ERROR: Got Http response code 400 when accessing https://api.sandbox.paypal.com/v1/payments/payment. {"name":"VALIDATION_ERROR","details":[{"field":"transactions[0].item_list.shipping_address.country_code","issue":"Must not be blank"},{"field":"transactions[0].item_list.shipping_address.country_code","issue":"Country code must be 2-character ISO 3166-1 value (upper case)"}],"message":"Invalid request - see details","information_link":"https://developer.paypal.com/docs/api/payments/#errors","debug_id":"910646f7a5dc0"}
+[22-12-2020 06:46:22] PayPal\Core\PayPalHttpConnection : INFO: POST https://api.sandbox.paypal.com/v1/oauth2/token
+[22-12-2020 06:46:24] PayPal\Core\PayPalHttpConnection : INFO: Response Status 	: 200
+[22-12-2020 06:46:24] PayPal\Core\PayPalHttpConnection : INFO: POST https://api.sandbox.paypal.com/v1/payments/payment
+[22-12-2020 06:46:27] PayPal\Core\PayPalHttpConnection : INFO: Response Status 	: 201

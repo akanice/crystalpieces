@@ -20,7 +20,7 @@
 							</div>
 							<div class="post-prev-text">
 								<?php $des = strip_tags(@$home_news[0]->content); 
-											$des = substr($des, 0, 200); 
+											$des = substr($des, 0, 250); 
 											echo $des;?>
 							</div>
 							<!--<div class="tag-in-item">
@@ -59,7 +59,9 @@
 									<div class="blog-title-w">
 										<a class="article-title" href="<?=base_url('post/'.$item->alias)?>"><?=@$item->title;?></a>
 										<div class="post-excerpt">
-											<?=$item->description?>
+											<?php $des = strip_tags(@$item->description); 
+												$des = substr($des, 0, 120); 
+												echo $des;?>...
 										</div>
 										<div class="time"><?php echo date_format(date_create($item->create_time),"d/m/Y"); ?></div>
 									</div>

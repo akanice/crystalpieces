@@ -9,6 +9,11 @@ class ProductsModel extends MY_Model {
             'nullable'  => true,
             'type'      => 'integer'
         ),
+		'parent_id' =>  array(
+            'isIndex'   => true,
+            'nullable'  => true,
+            'type'      => 'integer'
+        ),
         'title' => array(
             'isIndex'   => false,
             'nullable'  => false,

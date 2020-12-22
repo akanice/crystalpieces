@@ -91,20 +91,23 @@
 									$c = 0;
 									if (@count( $pricingPackage ) > 0 && is_array($pricingPackage)) {
 										foreach( $pricingPackage as $item ) {count( $pricingPackage );
-											if ( isset( $item->prodcode ) ) {
+											if ( isset( $item->sku ) ) {
 												printf( '
 													<div class="package-item clearfix">
-														<div class="col-sm-3"><input type="text" class="form-control" name="pricingPackage[%1$s][prodcode]" value="%2$s" placeholder="Tên SP/Mã SP"/></div>
+														<div class="col-sm-3">
+															<input type="text" class="form-control" name="pricingPackage[%1$s][prodcode]" value="%2$s" placeholder="Tên SP/Mã SP"/>
+															<input type="hidden" name="pricingPackage[%1$s][prodid]" value="%5$s">
+														</div>
 														<div class="col-sm-3"><input type="text" class="form-control" name="pricingPackage[%1$s][prodprice]" value="%3$s" placeholder="Giá SP"/></div>
 														<div class="col-sm-3">
 															<input type="text" class="form-control" name="pricingPackage[%1$s][prodimage]" id="prodimage_%1$s" value="%4$s" placeholder="Ảnh"/>
-															<img src="/assets/uploads/%4$s" style="width: 100px;"/>
+															<img src="/assets/uploads/%4$s" style="height: 32px;"/>
 														</div>
 														<div class="col-sm-1"><a href="/assets/filemanager/dialog.php?type=1&field_id=prodimage_%1$s&relative_url=1&multiple=0" class="btn btn-sm btn-fill btn-success iframe-btn" type="button">Ảnh</a></div>
 														<div class="col-sm-1"><span class=""><a href="javascript:void(0);" class="btn btn-info btn-simple btn-nopadding btn-link remove-package"><i class="fa fa-trash"></i></a></span></div>
 													</div>
 													',
-														$c, $item->prodcode,$item->prodprice, $item->prodimage, 'Xóa'
+														$c, $item->sku,$item->price, $item->image, $item->id, 'Xóa'
 													);
 												$c = $c +1;
 											}

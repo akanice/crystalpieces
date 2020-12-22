@@ -6,6 +6,7 @@
 .product_tabs .nav-tabs {
     width: 100%;
     border-top: 1px dashed #3a3a3a;
+	border-bottom: 1px dashed #3a3a3a;
     margin: auto;
 	display: block;
 	text-align:center;
@@ -355,6 +356,25 @@
 	font-weight: 500;
 	font-family: 'Quicksand',Arial,san-serif;
 }
+.slick-arrow {
+	top: unset;
+    background: #d33833;
+    color: #fff;
+    z-index: 2;
+    height: 40px;
+    width: 69px;
+	bottom: -20px;
+}
+.slick-prev {
+	right: 69px;
+    left: unset;
+}
+.slick-next  {
+    right: 0;
+}
+.slick-prev:hover, .slick-prev:focus, .slick-next:hover, .slick-next:focus {
+	background: #8c0a05;
+}
 @media (max-width: 768px) {
 	.table.table-cart .product-row {
 		flex-direction: row;
@@ -397,5 +417,8 @@
 	}
 	.product_tabs .tab-pane, .product_tabs p {
 		color: #e2e2e2;
+	}
+	.slick-arrow {
+		bottom: -12px;
 	}
 }
