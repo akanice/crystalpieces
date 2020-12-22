@@ -52,22 +52,33 @@ class Paypal extends MY_Controller
 // ### Itemized information
 // (Optional) Lets you specify item wise
 // information
-        $item1["name"] = $this->input->post('item_name');
-        $item1["sku"] = $this->input->post('item_number');  // Similar to `item_number` in Classic API
-        $item1["description"] = $this->input->post('item_description');
-        $item1["currency"] ="USD";
-        $item1["quantity"] = strval($this->input->post('item_qty'));
-        $item1["price"] = $this->input->post('item_price');
+		$array_item = $this->input->post('item');
+		foreach ($array_item as $k=>$v) {
+			$item[$k]["name"] = $v['name'];
+			$item[$k]["sku"] = $v['number'];  // Similar to `item_number` in Classic API
+			$item[$k]["description"] = $v['description'];
+			$item[$k]["currency"] ="USD";
+			$item[$k]["quantity"] = strval($v['qty']);
+			$item[$k]["price"] = $v['price'];
+		}
+		// print_r($item);die();
+        // $item["name"] = $this->input->post('item_name');
+        // $item["sku"] = $this->input->post('item_number');  // Similar to `item_number` in Classic API
+        // $item["description"] = $this->input->post('item_description');
+        // $item["currency"] ="USD";
+        // $item["quantity"] = strval($this->input->post('item_qty'));
+        // $item["price"] = $this->input->post('item_price');
 
         $itemList = new ItemList();
-        $itemList->setItems(array($item1));
+        $itemList->setItems($item);
 		
+		// print_r($itemList );die();
 		// Set shipping address
 		$shipping_address['recipient_name'] = $this->input->post('item_name');
-		$shipping_address['city'] = 'Ha Noi';
-		$shipping_address['state'] = '';
-		$shipping_address['postal_code'] = '100000';
-		$shipping_address['country_code'] = 'VN';
+		$shipping_address['city'] = $this->input->post('ship_city');
+		$shipping_address['state'] = @$this->input->post('ship_state');
+		$shipping_address['postal_code'] = @$this->input->post('ship_postal_code');
+		$shipping_address['country_code'] = $this->input->post('ship_billing_country');
 		$shipping_address['line1'] = @$this->input->post('item_address');
         $itemList->setShippingAddress(@$shipping_address);
 		
@@ -113,9 +124,9 @@ class Paypal extends MY_Controller
         try {
             $payment->create($this->_api_context);
         } catch (Exception $ex) {
-            // NOTE: PLEASE DO NOT USE RESULTPRINTER CLASS IN YOUR ORIGINAL CODE. FOR SAMPLE ONLY
-            ResultPrinter::printError("Created Payment Using PayPal. Please visit the URL to Approve.", "Payment", null, $ex);
-            exit(1);
+			$this->session->set_flashdata('notif_msg','Unknown error occurred. Please re-check your information.');
+            redirect(base_url('cart'));
+			exit(1);
         }
         foreach($payment->getLinks() as $link) {
             if($link->getRel() == 'approval_url') {
@@ -141,15 +152,20 @@ class Paypal extends MY_Controller
 			'payment' => $this->input->post('payment_type'),
 			'create_time' => time(),
 		);
-		// print_r($data);die();
+		
 		$order_id = $this->ordersmodel->create($data);
-		$data1 = array(
-			'order_id' => $order_id, 
-			'product_id' => $this->input->post('item_number'),
-			'quantity' => $this->input->post('details_subtotal'),
-			'total' => $details['subtotal'],
-		);
-		$this->orderdetailsmodel->create($data1);
+		foreach ($array_item as $v) {
+			$data1 = array(
+				'order_id' => $order_id, 
+				'product_id' => $v['number'],
+				'quantity' =>$v['qty'],
+				'total' => $details['subtotal'],
+			);
+			$this->orderdetailsmodel->create($data1);
+		}
+		
+		// Destroy cart
+		$this->cart->destroy();
 		
         if(isset($redirect_url)) {
             /** redirect to paypal **/
@@ -217,7 +233,10 @@ class Paypal extends MY_Controller
             /** it's all right **/
             /** Here Write your database logic like that insert record or value in database if you want **/
             $this->paypal->create($payment_id,$Total,$Subtotal,$Tax,$PaymentMethod,$PayerStatus,$PayerMail,$saleId,$CreateTime,$UpdateTime,$State);
-			$this->ordersmodel->update(array('status'=>'pay_success'),array('code'=>$payment_id));
+
+			$this->db->where('paymentID', $payment_id);
+			$this->db->update('payments', array('payerstatus'=>'VERIFIED'));
+			
             $this->session->set_flashdata('success_msg','Payment success');
             $this->session->set_flashdata('payment_id',$payment_id);
             redirect('paypal/success');

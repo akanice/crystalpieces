@@ -33,7 +33,7 @@
 							@$cat_array = $products->categoryid;
 							@$cat_alias = $this->productscategorymodel->read(array('id'=>$cat_array[0]),array(),true)->alias;
 						?>
-						<h4 class="title">Sửa thông tin sản phẩm <a href="<?=@base_url('products/'.$products->alias)?>" class="btn btn-sm btn-fill btn-warning" target="_blank">Xem</a> <a href="<?=@base_url('admin/products/add/')?>" class="btn btn-sm btn-fill btn-success" target="_blank"><i class="fa fa-plus"></i> Thêm mới</a></h4>
+						<h4 class="title">Sửa thông tin sản phẩm <a href="<?=@base_url('product/'.$products->alias)?>" class="btn btn-sm btn-fill btn-warning" target="_blank">Xem</a> <a href="<?=@base_url('admin/products/add/')?>" class="btn btn-sm btn-fill btn-success" target="_blank"><i class="fa fa-plus"></i> Thêm mới</a></h4>
 					</div>
 					<div class="content">
 						<div class="form-group">
@@ -83,6 +83,41 @@
 								</select>
 							</div>
 						</div>
+						<div class="form-group" id="prod_variant">
+							<label class="col-sm-2 control-label">Thêm biến thể</label>
+							<div class="col-sm-10"><?//print_r($pricingPackage);?>
+								<div class="row">
+								<?php
+									$c = 0;
+									if (@count( $pricingPackage ) > 0 && is_array($pricingPackage)) {
+										foreach( $pricingPackage as $item ) {count( $pricingPackage );
+											if ( isset( $item->prodcode ) ) {
+												printf( '
+													<div class="package-item clearfix">
+														<div class="col-sm-3"><input type="text" class="form-control" name="pricingPackage[%1$s][prodcode]" value="%2$s" placeholder="Tên SP/Mã SP"/></div>
+														<div class="col-sm-3"><input type="text" class="form-control" name="pricingPackage[%1$s][prodprice]" value="%3$s" placeholder="Giá SP"/></div>
+														<div class="col-sm-3">
+															<input type="text" class="form-control" name="pricingPackage[%1$s][prodimage]" id="prodimage_%1$s" value="%4$s" placeholder="Ảnh"/>
+															<img src="/assets/uploads/%4$s" style="width: 100px;"/>
+														</div>
+														<div class="col-sm-1"><a href="/assets/filemanager/dialog.php?type=1&field_id=prodimage_%1$s&relative_url=1&multiple=0" class="btn btn-sm btn-fill btn-success iframe-btn" type="button">Ảnh</a></div>
+														<div class="col-sm-1"><span class=""><a href="javascript:void(0);" class="btn btn-info btn-simple btn-nopadding btn-link remove-package"><i class="fa fa-trash"></i></a></span></div>
+													</div>
+													',
+														$c, $item->prodcode,$item->prodprice, $item->prodimage, 'Xóa'
+													);
+												$c = $c +1;
+											}
+										}
+									}
+								?>
+									<div id="output-package" class="clearfix"></div>
+								</div>
+							</div>
+							
+							<div class="col-sm-offset-2 col-sm-10"><a href="#" class="add_package btn btn-fill btn-primary btn-sm"><i class="fa fa-plus"></i> Thêm</a></div>
+						</div>
+						<hr>
 						<div class="form-group">
 							<label class="col-sm-2 control-label">Sản phẩm nổi bật</label>
 							<div class="col-sm-10">
@@ -96,7 +131,7 @@
 							<label class="col-sm-2 control-label">Xuất xứ</label>
 							<div class="col-sm-4">
 								<?php
-								$countries = array("Chính hãng","Afghanistan", "Albania", "Algeria", "Samoa thuộc Mỹ", "Andorra", "Angola", "Anguilla", "Nam Cực", "Antigua và Barbuda", "Argentina", "Armenia", "Argentina", "Úc", "Áo", "Azerbaijan", "Bahamas", "Bahrain", "Bangladesh", "Barbados", "Belarus", "Bỉ", "Belize", "Bénin", "Bermuda", "Bhutan", "Bôlivia", "Bosnia và Herzegowina", "Botswana", "Đảo Bouvet", "Brazil", "Lãnh thổ Ấn Độ Dương thuộc Anh", "Brunei Darussalam", "Bulgaria", "Burkina Faso", "Burundi", "Campuchia", "Cameroon", "Canada", "Cape Verde", "Quần đảo Cayman", "Cộng hòa Trung Phi", "Chad", "Chile", "Trung Quốc", "Đảo Giáng sinh", "Cocos (Keeling ) Quần đảo", "Colombia", "Comoros", "Congo", "Congo, Cộng hòa Dân chủ", "Quần đảo Cook", "Costa Rica", "Bờ Biển Ngà", "Croatia (Hrvatska)", "Cuba", "Síp", "Cộng hòa Séc", "Đan Mạch", "Djibouti", "Dominica", "Cộng hòa Dominican", "Đông Timor", "Ecuador", "Ai Cập", "El Salvador", "Xích đạo Guinea", "Eritrea", "Estonia", "Ethiopia", "Quần đảo Falkland (Malvinas)", "Quần đảo Faroe", "Fiji", "Phần Lan", "P.R.C","Pháp", "Georgia", "Đức", "Ghana", "Gibraltar", "Hy Lạp", "Greenland", "Grenada", "Guadeloupe", "Guam", "Guatemala", "Guinea", "Guinea-Bissau", "Guyana", "Haiti", "Quần đảo Heard và Mc Donald", "Tòa thánh  Vatican", "Honduras", "Hồng Kông", "Hungary", "Iceland", "Ấn Độ", "Indonesia", "Iran", "Iraq", "Ireland", "Israel", "Ý", "Jamaica", "Nhật Bản", "Jordan", "Kazakhstan", "Kenya", "Kiribati", "Hàn Quốc", "Kuwait", "Kyrgyzstan", "Lào", "Latvia", "Lebanon", "Lesentine", "Liberia", "Libyan Arab Jamahiriya", "Liechtenstein", "Litva", "Luxembourg", "Macau", "Macedonia", "Madagascar", "Malawi", "Malaysia", "Maldives", "Mali", "Malta", "Quần đảo Marshall", "Martinique", "Mauritania", "Mauritius", "Mayotte", "Mexico", "Micronesia, Liên bang", "Moldova, Cộng hòa", "Monaco", "Mông Cổ", "Montserrat", "Morocco", "Mozambique", "Myanmar", "Namibia", "Nauru", "Nepal", "Hà Lan", "Antilles của Hà Lan", "New Caledonia", "New Zealand", "Nicaragua", "Nigeria", "Nigeria", "Niue", "Norfolk Đảo", "Quần đảo Bắc Mariana", "Na Uy", "Ô-man", "Pakistan", "Palau", "Panama", "Papua New Guinea", "Paraguay", "Peru", "Philippines", "Pitcairn", "Ba Lan", "Bồ Đào Nha", "Puerto Rico", "Qatar", "Romania", "Liên bang Nga", "Rwanda", "Saint Kitts và Nevis", "Saint Lucia", "Saint Vincent và Grenadines", "Samoa", "San Marino", "Sao Tome và Principe", "Ả Rập Saudi", "Sénégal", "Seychelles", "Sierra Leone", "Singapore", "Slovakia (Cộng hòa Slovak)", "Slovenia", "Quần đảo Solomon", "Somalia", "Nam Phi", "Nam Georgia và quần đảo Nam Sandwich", "Tây Ban Nha", "Sri Lanka", "St. Helena", "St. Pierre và Miquelon", "Sudan", "Suriname", "Svalbard và Jan Mayen Islands", "Swaziland", "Thụy Điển", "Thụy Sĩ", "Cộng hòa Ả Rập Syria", "Đài Loan", "Tajikistan", "Tanzania", "Thái Lan", "Togo", "Tokelau", "Tonga", "Trinidad và Tobago", "Tunisia", "Thổ Nhĩ Kỳ", "Turkmenistan", "Quần đảo Turks và Caicos", "Tuvalu", "Uganda", "Ukraine", "Các tiểu vương quốc Ả Rập thống nhất", "Vương quốc Anh", "Hoa Kỳ", "Uruguay", "Uzbekistan", "Vanuatu", "Venezuela", "Việt Nam", "Quần đảo Virgin (Anh)", "Quần đảo Virgin (Mỹ)", "Quần đảo Wallis và Futuna", "Tây Sahara", "Yemen", "Nam Tư", "Zambia", "Zimbabwe");
+								$countries = array("Chính hãng", "Việt Nam");
 								sort($countries);
 								//echo $a;
 								?>
@@ -271,37 +306,6 @@
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-sm-12">Custom field</label>
-							<?php
-								$c = 0;//print_r($pricingPackage);
-								if ($p_custom_data) {foreach( $p_custom_data as $cd ) {
-									$p[] = $cd;
-								}}
-								
-								if ($cat_custom_field) {
-									if ( count( $cat_custom_field ) > 0 && is_array($cat_custom_field)) {
-										foreach( $cat_custom_field as $item ) {
-											if ( isset( $item->packname ) || isset( $item->packvalue ) ) {?>
-											<div class="package-item clearfix">
-												<div class="col-sm-3"><label><?=@$item->packname?></label></div>
-												<div class="col-sm-9">
-													<select name="<?=make_alias($item->packname)?>" class="form-control">
-														<?php $packvalue = explode(",",$item->packvalue);
-															foreach( $packvalue as $pv ) {
-															?>
-														<option value="<?=$pv?>" <?php if($pv==$p[$c]) echo 'selected';?>><?=$pv?></option>
-														<?php } ?>
-													</select>
-												</div>
-											</div>
-											<?php } $c++;
-										}
-									}
-								}
-								?>
-							<div id="output-package" class="clearfix"></div>
-						</div>
-						<div class="form-group">
 							<label class="col-sm-2 control-label"></label>
 							<div class="col-sm-6">
 								<input type="submit" class="btn btn-primary btn-fill btn-wd" name="submit" value="Lưu lại">
@@ -316,6 +320,28 @@
     </div>
 </div>
 	<script src="<?=base_url('assets/js/jquery.min.js')?>" type="text/javascript"></script>
+	<script type="text/javascript">
+		var $ =jQuery.noConflict();
+		// var $c = 0;
+		jQuery(document).ready(function($){
+			var count = <?php echo $c-1; ?>;
+			$(".add_package").click(function() {
+				count = count + 1;
+				$('#output-package').append('\
+					<div class="package-item clearfix"> \
+						<div class="col-sm-3"><input type="text" class="form-control" name="pricingPackage['+count+'][prodcode]" value="" placeholder="Tên SP/Mã SP"/></div>\
+						<div class="col-sm-3"><input type="text" class="form-control" name="pricingPackage['+count+'][prodprice]" value=""placeholder="Giá SP" /></div>\
+						<div class="col-sm-3"><input type="text" class="form-control" name="pricingPackage['+count+'][prodimage]" id="prodimage_'+count+'" value=""placeholder="Ảnh" readonly/></div>\
+						<div class="col-sm-1"><a href="/assets/filemanager/dialog.php?type=1&field_id=prodimage_'+count+'&relative_url=1&multiple=0" class="btn btn-sm btn-fill btn-success iframe-btn" type="button">Ảnh</a></div>\
+						<div class="col-sm-1"><span class=""><a href="javascript:void(0);" class="btn btn-info btn-simple btn-nopadding btn-link remove-package"><i class="fa fa-trash"></i></a></span></div>\
+					</div>');
+				return false;
+			});
+			$(document.body).on('click','.remove-package',function() {
+				$(this).closest('div.package-item').remove();
+			});
+		});
+	</script>
 	<script type="text/javascript">
 		// filemanager callback
 		function responsive_filemanager_callback(field_id){

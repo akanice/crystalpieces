@@ -68,7 +68,7 @@
 										<!--<div><span itemprop="price" class="price hl">
 											<h4><del>10.568.000 ₫</del><span>16 % Giảm</span></h4>
 										</span></div>-->
-										<h2 class="price">$ <?=@$product_data->price?></h2>
+										<h2 class="price" id="prod_price">$ <?=@$product_data->price?></h2>
 										<div class="border-product">
 											<div>
 												<h5 class="product-title d-inline">Category: </h5>
@@ -86,6 +86,19 @@
 											<h5 class="product-title">Description:</h5>
 											<span><?=@$product_data->short_description?></span>
 										</div>
+										<?php if (@$variant) {?>
+										<div class="border-product">
+											<h5 class="product-title">Select Variant:</h5>
+											<div class="variant clearfix">
+												<?php foreach ($variant as $item) {?>
+												<div class="variant-col">
+													<div data-v_title="<?=@$item->prodcode?>" data-v_price="<?=@$item->prodprice?>" style="background-image:url('<?=@base_url('assets/uploads/'.$item->prodimage)?>')" class="variant-item" title="<?=@$item->prodcode?>"></div>
+													<div class="variant-text center"><?=@$item->prodcode?></div>
+												</div>
+												<?php } ?>
+											</div>
+										</div>
+										<?php } ?>
 										<div class="product-buy mb-3">
 											<div class="first">
 												<button type="button" class="btn-order" id="btn_complete_order" data-product_id="<?=@$product_data->id?>" data-product_name="<?=@$product_data->title?>" data-product_quantity="1" data-product_extra_des="" data-product_thumb="<?=@$product_data->thumb?>" data-product_price="<?=@$product_data->price?>">
@@ -129,9 +142,6 @@
 									</li>
 									<?php } ?>
 									<li class="nav-item" role="presentation">
-										<a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Q&A</a>
-									</li>
-									<li class="nav-item" role="presentation">
 										<a class="nav-link" id="discuss-tab" data-toggle="tab" href="#discuss" role="tab" aria-controls="contact" aria-selected="false">Dicussion</a>
 									</li>
 								</ul>
@@ -150,8 +160,7 @@
 										</div>
 									</div>
 									<?php } ?>
-									<div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">3</div>
-									<div class="tab-pane fade" id="discuss" role="tabpanel" aria-labelledby="discuss-tab">4</div>
+									<div class="tab-pane fade" id="discuss" role="tabpanel" aria-labelledby="discuss-tab">[Coming soon]</div>
 								</div>
 							</div>
 						</div>
@@ -162,6 +171,13 @@
 
 	<script type="text/javascript">
 		$(document).ready(function () {
+			$('.variant-item').click(function() {
+				$('.variant-item').removeClass('active');
+				$(this).addClass('active');
+				var t_price = $(this).data('v_price');
+				$('#prod_price').html('$ '+t_price);
+				$('#btn_complete_order').data('product_price',t_price);
+			});
 			$('.product-slick').slick({
 				slidesToShow: 1,
 				slidesToScroll: 1,

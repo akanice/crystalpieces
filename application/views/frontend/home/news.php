@@ -9,19 +9,21 @@
 					<div class="blog-item-home wow fadeIn" style="visibility: visible; animation-name: fadeIn;">
 						<div class="blog-image-w">
 							<div class="post-prev-img">
-								<a href="#">
-									<img src="/assets/img/sample_blog_thumb2.jpg" alt="img">
+								<a href="<?=@base_url('post/'.$home_news[0]->alias)?>">
+									<img src="<?=@base_url($home_news[0]->image)?>" alt="img">
 								</a>
 							</div>
 						</div>
 						<div class="blog-title-w">
 							<div class="post-prev-title">
-								<h3><a href="#">Sirius Story - From Zero to One</a></h3>
+								<h3><a href="<?=@base_url('post/'.$home_news[0]->alias)?>"><?=@$home_news[0]->title?></a></h3>
 							</div>
 							<div class="post-prev-text">
-								Tại Việt Nam có hàng trăm thương hiệu bàn phím cơ khác nhau từ giá rẻ đến đắt tiền, từ không đèn nền đến LED RGB, từ sản phẩm bình dân đến thủ công mĩ nghệ. Thị trường có quá nhiều sự lựa chọn vậy mình nên chọn bàn phím cơ nào? Nhu cầu của mình như thế nào? OK, vào vấn đề nhé!
+								<?php $des = strip_tags(@$home_news[0]->content); 
+											$des = substr($des, 0, 200); 
+											echo $des;?>
 							</div>
-							<div class="tag-in-item">
+							<!--<div class="tag-in-item">
 								<a href="#/" class="tag-item">
 									#SWITCH LOW-PROFILE
 								</a>
@@ -30,7 +32,7 @@
 								</a>
 								<a href="#" class="tag-item">
 									#Fullsize
-								</a>
+								</a>-->
 							</div>
 						</div>
 					</div>
@@ -43,7 +45,10 @@
 					
 					<div class="blog-list-scrollable">
 						<div class="com-article-list owl-3-article owl-arrows-bg owl-carousel owl-theme">
-							<?php if ($home_news) foreach ($home_news as $item) { ?>
+							<?php $i=0;$len = count($home_news);
+								if ($home_news) foreach ($home_news as $item) { 
+								if (($i !== 0) && ($i !== $len - 1)) {
+								?>
 							<div class="article-item">
 								<div class="article-item-content">
 									<div class="blog-image-w">
@@ -57,21 +62,10 @@
 											<?=$item->description?>
 										</div>
 										<div class="time"><?php echo date_format(date_create($item->create_time),"d/m/Y"); ?></div>
-										<div class="tag-in-item">
-											<a href="<?=base_url('post/'.$item->alias)?>" class="tag-item">
-												#crystalpieces
-											</a>
-											<a href="<?=base_url('post/'.$item->alias)?>" class="tag-item">
-												#chipu
-											</a>
-											<a href="<?=base_url('post/'.$item->alias)?>" class="tag-item">
-												#quynhanhshin
-											</a>
-										</div>
 									</div>
 								</div>
 							</div>
-							<?php } ?>
+							<?php }$i++;  } ?>
 						</div>
 					</div>
 				</div>

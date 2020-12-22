@@ -110,7 +110,7 @@
         public function update() {
             $carts = $this->cart->contents();
             foreach ($carts as $key => $row) {
-                $total_qty = $this->input->post('qty_'.$row['id']);
+                $total_qty = $this->input->post('item_qty'.$row['id']);
                 $data = array();
                 $data['rowid'] = $key;
                 $data['qty'] = $total_qty;

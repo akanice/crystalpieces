@@ -115,6 +115,7 @@ class Products extends MY_Controller {
 			// Load file_attach
 			$this->data['file_attach'] = @$this->productsattachmodel->read(array('product_id'=>$this->data['product_data']->id,'attachdata'=>'file_attach'),array(),true)->value;
 			$this->data['actual_image'] = @$this->productsattachmodel->read(array('product_id'=>$this->data['product_data']->id,'attachdata'=>'actual_image'),array(),true)->value;
+			$this->data['variant'] = json_decode($this->productsattachmodel->read(array('product_id'=>$this->data['product_data']->id,'attachdata'=>'variant'),array(),true)->value);
 			@$video_id = $this->productsattachmodel->read(array('product_id'=>$this->data['product_data']->id,'attachdata'=>'video_attach'),array(),true)->value;
 			$this->data['video_attach'] = $this->videosmodel->read(array('id'=>$video_id),array(),true);
 			

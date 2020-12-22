@@ -66,9 +66,18 @@
 	.owl-3-article .owl-stage {
 		right: 30px;
 	}
-	.sale-schedule-wapper .row.products-w,.product-list .row.products-w {
+	.sale-schedule-wapper .row.products-w,.product-list .row.products-w,.row-condensed {
 		margin-left: -5px;
 		margin-right:-5px;
+	}
+	.col-order-3 {
+		padding-top: 10px;
+	}
+	.col-order-4 {
+		padding-top: 15px;
+	}
+	.row-total-price b {
+		display: block;
 	}
 }
 @media (max-width: 1199px) {

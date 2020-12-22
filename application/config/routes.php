@@ -131,6 +131,9 @@ $route['paypal/success']         	 							=	"paypal/success";
 $route['paypal/cancel']         	 							=	"paypal/cancel";
 
 
+$route['paypal/ipn']         	 									=	"home/ipn";
+
+
 // $route['(:any)'] 												= 	"products/viewCat/$1";
 // $route['(:any)/(:num)'] 									= 	"products/viewCat/$1/$2";
 // $route['(:any)/(:any)'] 										= 	"products/viewProduct/$1/$2";

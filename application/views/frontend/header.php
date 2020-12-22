@@ -27,7 +27,7 @@
 									</button>
 								</div>
 								<div class="wrapper-logo">
-									<a href="#" class="header-logo-link-mobile">
+									<a href="<?=base_url()?>" class="header-logo-link-mobile">
 										<img src="/assets/img/logo_main.png" alt="Logo">
 									</a>
 								</div>

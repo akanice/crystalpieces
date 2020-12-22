@@ -208,34 +208,17 @@ class Products extends MY_Controller{
 			$this->productsmodel->update($data,array('id'=>$id));
 			$this->productsmodel->update(array('alias'=>make_alias($this->input->post("title").'-'.$id)),array('id'=>$id));
 
-			// Create new tag_term
-			// $tags = json_encode($this->input->post("tags"));
-			// if ($tags && $tags != '') {
-				// $temp1 = $this->tagstermmodel->read(array('type'=>'product','term_id'=>$id),array(),true);
-				// if(!$temp1) {
-					// $this->tagstermmodel->create(array('type'=>'product','term_id'=>$id,'tag_id'=>$tags));
-				// } else {
-					// $this->tagstermmodel->update(array('tag_id'=>$tags),array('type'=>'product','term_id'=>$id));
-				// }
-			// }
-			
 			// Product variation
-			if ($this->data['cat_custom_field'] != '') foreach ($this->data['cat_custom_field'] as $d) {
-				$value = $this->input->post(make_alias($d->packname));
-				$c_data[$d->packname] =$value;
-			}
-			$c_data = json_encode($c_data, JSON_UNESCAPED_UNICODE);
-			$temp = $this->productsattachmodel->read(array('product_id'=>$id,'attachdata'=>'custom_field'),array(),true);
+			$pricingPackage = $this->input->post("pricingPackage");			
+			$pricingPackage = json_encode($pricingPackage, JSON_UNESCAPED_UNICODE);
+			$temp = $this->productsattachmodel->read(array('product_id'=>$id,'attachdata'=>'variant'),array(),true);
 			if (!isset($temp) or $temp == '') {
-				$this->productsattachmodel->create(array('attachdata'=>'custom_field', 'value'=>$c_data,'product_id'=>$id));
+				$this->productsattachmodel->create(array('attachdata'=>'variant', 'value'=>$pricingPackage,'product_id'=>$id));
 			} else {
-				$this->productsattachmodel->update(array('attachdata'=>'custom_field', 'value'=>$c_data),array('id'=>$temp->id));
+				$this->productsattachmodel->update(array('attachdata'=>'variant', 'value'=>$pricingPackage),array('id'=>$temp->id));
 			}
 			
 			// File Attach
-			$this->attachData($id, 'file_attach', 'assets/uploads/'.$this->input->post("files"));
-			$this->attachData($id, 'video_attach', $this->input->post("videos"));
-			$this->attachData($id, 'actual_image', json_encode($this->input->post("actual_image")));
 			
 			redirect(base_url() . "admin/products/edit/".$id);
 			exit();
@@ -337,7 +320,8 @@ class Products extends MY_Controller{
 		$this->data['p_file_attach'] = str_replace('assets/uploads/', '', $this->data['p_file_attach']);
 		$this->data['p_video_attach'] = @$this->productsattachmodel->read(array('product_id'=>$id,'attachdata'=>'video_attach'),array(),true)->value;
 		$this->data['actual_image'] = @($this->productsattachmodel->read(array('product_id'=>$id,'attachdata'=>'actual_image'),array(),true)->value);
-		$this->data['cat_custom_field'] = @json_decode($this->productscategorymodel->read(array('id'=>$cat_id[0]),array(),true)->custom_field);
+		
+		$this->data['pricingPackage'] = @json_decode($this->productsattachmodel->read(array('product_id'=>$id,'attachdata'=>'variant'),array(),true)->value);
 		
 	}
 	

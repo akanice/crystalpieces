@@ -28,9 +28,9 @@
 									<div class="widget-body">
 										<div class="product-category-right-menu">
 											<ul>
-												<li><a href="#">Alien & Predator</a></li>
-												<li><a href="#">Alien & Predator</a></li>
-												<li><a href="#">Alien & Predator</a></li>
+												<?php foreach ($categories as $item) {?>
+												<li><a href="<?=@base_url('category/'.$item->alias)?>"><?=@$item->title?></a></li>
+												<?php } ?>
 											</ul>
 										</div>
 									</div>
@@ -43,27 +43,7 @@
 									<div class="col-lg-12">
 										<div style="display: flex; justify-content: space-between;">
 											<span class="shop-title-page">SHOP</span>
-											<!--
-											<div class="mt-10" style="width: 200px;">
-												<div id="select-maker-wrapper" class=" artkey-custom-select-control">
-													<select name="maker" id="select-maker">
-														<option value="0">Select Maker</option>
-														<option value="387">Artkey </option>
-														<option value="1877">Hieu Minh</option>
-														<option value="1878">Khuong Dinh</option>
-														<option value="1879">Minh To</option>
-														<option value="1880">Daniel </option>
-													</select>
-													<div class="select-selected">Select Maker</div>
-													<div class="select-items select-hide">
-														<div>Artkey </div>
-														<div>Hieu Minh</div>
-														<div>Khuong Dinh</div>
-														<div>Minh To</div>
-														<div>Daniel </div>
-													</div>
-												</div>
-											</div>-->
+
 										</div>
 									</div>
 								</div>
@@ -82,7 +62,7 @@
 											<div class="thumb-summary-wrapper">
 												<div class="post-prev-title text-overflow-ellipsis">
 													<a class="a-inv artkey-product-title" href="#">
-														<div>Kryptonite</div>
+														<div><?=@$item->title?></div>
 													</a>
 													<div class="thumb-summary-wrapper-product-serial-name">
 														<?=@$category_data->title?>
@@ -100,7 +80,7 @@
 									
 								</div>
 								
-								<!-- Pagination -->
+								<!-- Pagination
 								<div class="paging-com pagination">
 									<?php echo $page_links;?>
 									<a class="page-prev" onclick="return false;" style="cursor: default; margin-right: 10px;">
@@ -113,7 +93,7 @@
 										<span>2</span>
 									</a>
 								</div>
-								<!-- End Pagination -->
+								End Pagination -->
 							</div>
 							<!-- End Product Grid -->
 						</div>

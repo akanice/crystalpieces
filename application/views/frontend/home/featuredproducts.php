@@ -37,8 +37,8 @@
 				</div><!-- End Recent Products-->
 				
 				<div class="all-product">
-					<div class="row">
-						<div class="col-12">
+					<div class="">
+						<div class="">
 							<div class="sale-schedule-wapper style2">
 								<div class="sale-items-wrapper">
 								<div class="sale-item go-to-shop">
@@ -80,7 +80,7 @@
 						<span class="text-special" title="Product">Product</span>
 					</div>
 					<div class="sale-items-wrapper upcoming-product">
-						<div class="ucm-item-home wow fadeIn row">
+						<div class="ucm-item-home wow fadeIn row row-condensed">
 							<div class="ucm-image-w col-12 col-sm-5 col-lg-6">
 								<div class="ucm-prev-img">
 									<a href="#">
