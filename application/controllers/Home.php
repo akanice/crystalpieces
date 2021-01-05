@@ -108,4 +108,5 @@ class Home extends MY_Controller {
 		$this->data['temp'] = 'frontend/home/index';
 		$this->load->view('frontend/index', $this->data);
     }
+	
 }

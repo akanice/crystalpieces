@@ -219,7 +219,7 @@ class Products extends MY_Controller{
 				// $this->productsattachmodel->update(array('attachdata'=>'variant', 'value'=>$pricingPackage),array('id'=>$temp->id));
 			// }
 			if ($pricingPackage && $pricingPackage != '') { foreach ($pricingPackage as $item) {
-				$data=array('parent_id'=>$id,'sku'=>$item['prodcode'],'price'=>$item['prodprice'],'image'=>$item['prodimage'],'thumb'=>$item['prodimage'],'type'=>'variant');
+				$data=array('parent_id'=>$id,'sku'=>$item['prodcode'],'price'=>$item['prodprice'],'image'=>'assets/uploads/'.$item['prodimage'],'thumb'=>'assets/uploads/'.$item['prodimage'],'type'=>'variant');
 				if (@$item['prodid']) {
 					$this->productsmodel->update($data,array('id'=>$item['prodid']));
 				} else {

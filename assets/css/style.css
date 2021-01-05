@@ -1024,6 +1024,9 @@ a {
 .yith-wcbm-badge-custom {
     color: #d33833;
 }
+.cart-total {
+	font-family: 'Quicksand';
+}
 .cart-total .inner > .row.product-row {
     padding-bottom: 15px;
 }
@@ -1031,6 +1034,8 @@ a {
     background: #eee;    
 	padding: 10px 0px;
     margin-bottom: 10px;
+}
+.cart-total .name {
 }
 .btn-checkout {
 	border-bottom: 1px dashed #d33833;

@@ -127,6 +127,9 @@
 													case 'cancelled':
 														$status =  'Đã hủy';$extra_class = 'color_grey';
 														break;
+													case 'pay_refund':
+														$status =  'Đã hoàn tiền';$extra_class = 'color_grey';
+														break;
 													default:
 														$status =  'Mới';$extra_class = 'color_default';
 												}

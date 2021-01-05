@@ -61,7 +61,7 @@
 											</a>
 											<div class="thumb-summary-wrapper">
 												<div class="post-prev-title text-overflow-ellipsis">
-													<a class="a-inv artkey-product-title" href="#">
+													<a class="a-inv artkey-product-title" href="<?=base_url('product/'.$item->alias)?>">
 														<div><?=@$item->title?></div>
 													</a>
 													<div class="thumb-summary-wrapper-product-serial-name">

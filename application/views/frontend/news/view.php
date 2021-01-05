@@ -43,12 +43,12 @@
 											<div class="article-item">
 												<div class="article-item-content">
 													<div class="blog-image-w">
-														<a href="<?=base_url('bai-viet/'.$item->alias)?>">
+														<a href="<?=base_url('post/'.$item->alias)?>">
 															<img src="<?=base_url($item->thumb)?>" alt="img">
 														</a>
 													</div>
 													<div class="blog-title-w">
-														<a class="article-title" href="<?=base_url('bai-viet/'.$item->alias)?>"><?=@$item->title;?></a>
+														<a class="article-title" href="<?=base_url('post/'.$item->alias)?>"><?=@$item->title;?></a>
 														<div class="post-excerpt">
 															<?=$item->description?>
 														</div>

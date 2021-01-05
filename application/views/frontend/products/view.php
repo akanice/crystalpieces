@@ -91,12 +91,12 @@
 											<h5 class="product-title">Select Variant:</h5>
 											<div class="variant clearfix">
 												<div class="variant-col">
-													<div data-v_title="<?=@$product_data->sku?>" data-v_price="<?=@$product_data->price?>" data-v_id="<?=@$product_data->id?>" style="background-image:url('<?=@base_url($product_data->thumb)?>')" class="variant-item" title="<?=@$product_data->sku?>"></div>
+													<div data-v_title="<?=@$product_data->sku?>" data-v_price="<?=@$product_data->price?>" data-v_id="<?=@$product_data->id?>" data-v_sku="<?=@$product_data->sku?>" style="background-image:url('<?=@base_url($product_data->thumb)?>')" class="variant-item" title="<?=@$product_data->sku?>"></div>
 													<div class="variant-text center"><?=@$product_data->sku?></div>
 												</div>
 												<?php foreach ($variant as $item) {?>
 												<div class="variant-col">
-													<div data-v_title="<?=@$item->sku?>" data-v_price="<?=@$item->price?>" data-v_id="<?=@$item->id?>" style="background-image:url('<?=@base_url('assets/uploads/'.$item->image)?>')" class="variant-item" title="<?=@$item->sku?>"></div>
+													<div data-v_title="<?=@$item->sku?>" data-v_price="<?=@$item->price?>" data-v_id="<?=@$item->id?>" data-v_sku="<?=@$item->sku?>" style="background-image:url('<?=@base_url($item->image)?>')" class="variant-item" title="<?=@$item->sku?>"></div>
 													<div class="variant-text center"><?=@$item->sku?></div>
 												</div>
 												<?php } ?>
@@ -179,11 +179,13 @@
 				$('.variant-item').removeClass('active');
 				$(this).addClass('active');
 				var t_price = $(this).data('v_price');
-				var t_id = $(this).data('v_id');
+				var t_id 		= $(this).data('v_id');
+				var t_sku	= $(this).data('v_sku');
 				$('#prod_price').html('$ '+t_price);
 				$('#btn_complete_order').data({
 					'product_id':t_id,
-					'product_price':t_price
+					'product_price':t_price,
+					'product_name': '<?=@$product_data->title?>'+'-'+t_sku
 				});
 			});
 			$('.product-slick').slick({

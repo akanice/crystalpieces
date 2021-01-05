@@ -26,14 +26,14 @@
 												$total_amount = $total_amount + $row['subtotal'];
 											?>
 											<div class="row clearfix product-row">
-												<div class="col-sm-3 col-6 col-order1"><img src="<?=@base_url($row['thumb']); ?>" class="img-holder"></div>
-												<div class="col-sm-3 col-6 col col-order2">
-													<h4 class="name"><b><?=@$row['name'];?></b></h4>
+												<div class="col-sm-2 col-6 col-order1"><img src="<?=@base_url($row['thumb']); ?>" class="img-holder"></div>
+												<div class="col-sm-4 col-6 col col-order2">
+													<h4 class="name"><?=@$row['name'];?> </h4>
 													<div class="extra-des">
 														<?=@$row['extra_des'];?>
 													</div>
 												</div>
-												<div class="col-sm-4 col-6 d-flex flex-row col-order-3">
+												<div class="col-sm-3 col-6 d-flex flex-row col-order-3">
 													<div class="input-group  bootstrap-touchspin bootstrap-touchspin-injected">
 														<input class="vertical-quantity form-control input-number" type="text" size="1" id="qty_<?php echo $row['id']; ?>" name="item_qty<?php  echo $row['id']; ?>" value="<?php echo $row['qty']; ?>"  min="0" max="1000"/>
 														<span class="input-group-btn-vertical">
@@ -43,7 +43,8 @@
 													</div>
 
 												</div>
-												<div class="col-sm-2 col-6 pull-right col-order-4 text-right"><span class="price">$ <?=number_format($row['price'], 0, '.', ',');?></span></div>
+												<div class="col-sm-1 col-6 col-order-4"><span class="price text-warning">$<?=number_format($row['price'], 0, '.', ',');?></span><br>/unit</div>
+												<div class="col-sm-2 col-6 pull-right col-order-5 text-right"><span class="price">$ <?php $subtotal=$row['price']*$row['qty'];echo number_format($subtotal, 0, '.', ',');?></span><br>Subtotal</div>
 												
 											</div>
 											<?php } ?>

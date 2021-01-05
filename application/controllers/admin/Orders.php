@@ -1,10 +1,21 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
+require_once(APPPATH . 'libraries/paypal-php-sdk/paypal/rest-api-sdk-php/sample/bootstrap.php'); // require paypal files
+
+use PayPal\Api\ItemList;
+use PayPal\Api\Payment;
+use PayPal\Api\RedirectUrls;
+use PayPal\Api\Amount;
+use PayPal\Api\PaymentExecution;
+use PayPal\Api\RefundRequest;
+use PayPal\Api\Sale;
+
 class Orders extends MY_Controller{
     public $data;
+	public $_api_context;
     function __construct() {
         parent::__construct();
-       $this->auth = new Auth();
+		$this->auth = new Auth();
         $this->auth->check();
 		$this->checkCookies();
         // if($this->session->userdata('admingroup') == "mod"){
@@ -16,10 +27,15 @@ class Orders extends MY_Controller{
         $this->load->model('productsmodel');
         $this->load->model('ordersmodel');
         $this->load->model('orderdetailsmodel');
-		// $user_group = $this->adminsmodel->read(array('id'=>$this->session->userdata('adminid')),array(),true)->group;
-        // if ($user_group !== 'admin') {
-			// redirect(base_url()."admin/access_denied");
-		// }
+        $this->load->model('Paypal_model');
+		
+		$this->config->load('paypal');
+
+		$this->_api_context = new \PayPal\Rest\ApiContext(
+            new \PayPal\Auth\OAuthTokenCredential(
+                $this->config->item('client_id'), $this->config->item('secret')
+            )
+        );
 	}
     public function index(){
         $this->data['title'] 				= 'Quản lý đơn hàng';
@@ -76,13 +92,15 @@ class Orders extends MY_Controller{
 		$this->data['admin_id'] = $this->session->userdata('adminid');
 		$this->data['id'] = $id;
         $this->data['order'] = $this->ordersmodel->read(array('id' => $id), array(), true);
+        $this->data['transaction'] = $this->Paypal_model->read(array('paymentID' => $this->data['order']->code), array(), true);
 		
 		// Get order detail
         $order_detail_array = $this->orderdetailsmodel->read(array('order_id' => $id), array(), false);
-		foreach ($order_detail_array as $i) {
-			$this->data['order_detail'][] = $this->productsmodel->read(array('id' => $i->product_id), array(), true);
+		foreach ($order_detail_array as $k=>$i) {
+			$this->data['order_detail'][$k] = $this->productsmodel->read(array('id' => $i->product_id), array(), true);
+			$this->data['order_detail'][$k]->quantity = $i->quantity;
 		}
-		
+
 		if ($this->data['order']->status !== 'closed') {
 			$this->data['title'] = 'Cập nhật trạng thái đơn hàng';
 			if($this->input->post('submit') != null) {	
@@ -127,59 +145,37 @@ class Orders extends MY_Controller{
 		$this->load->view('admin/orders/view');
         $this->load->view('admin/common/footer');
 	}
-		
-	public function updatesale($id) {
-        $this->data['order'] = $order = $this->ordersmodel->read(array("id"=>$id),array(),true);
-		$this->data['customer'] = $this->customersmodel->read(array('id_order'=>$id),array(),true);
-		if(isset($_POST['submit'])){
-            $implement_date = $_POST['implement_date'];
-			$implement_date = str_replace('/', '-', $implement_date);
-            $note = $_POST['note'];
-			$sale_number = $this->input->post('sale_number');
-			$sale_type = $this->input->post('sale_type');
-			if ($sale_type == 0) {
-				$sale_percent = $sale_number;
-				$sale_amount = 0;
-			} else {
-				$sale_percent = 0;
-				$sale_amount = $sale_number;
-			}
-			
-            $data = array('implement_date' => strtotime($implement_date),
-						  'sale_percent' => $sale_percent,
-						  'sale_amount' => $sale_amount,
-                          'note' => $note
-                         );
-            $id_order = $this->ordersmodel->update($data,array('id'=>$id));
-			
-			if($id_order){
-				//history (log)
-				$this->load->model('usershistorymodel');
-				if($id_order){
-					$data2 = array(
-						'id_user' => $this->session->userdata('adminid'),
-						'id_order' => $id,
-						'action' => 'modify',
-						'datetime' => time(),
-						'type' => '',
-					);
-					$this->usershistorymodel->create($data2);
-				}
-
-                redirect(base_url() . "admin/orders");
-            }else{
-                redirect(base_url() . "admin/customers");
-            }
-        } else {
-            $this->load->view('admin/common/header',$this->data);
-            $this->load->view('admin/orders/updatesale');
-            $this->load->view('admin/common/footer');
-        }
-    }
 	
-    public function payAffiliate($id) {
+    public function refund_payment(){
+        $refund_amount = $this->input->post('refund_amount');
+		$saleId = $this->input->post('sale_id');
+		$paymentValue =  (string) round($refund_amount,2);
 		
-	}
+		// ### Refund amount
+        $amt = new Amount();
+        $amt->setCurrency('USD')
+            ->setTotal($paymentValue);
+
+		// ### Refund object
+        $refundRequest = new RefundRequest();
+        $refundRequest->setAmount($amt);
+
+        $sale = new Sale();
+        $sale->setId($saleId);
+		
+		print_r($amt);
+		print_r($sale);
+		
+        try {
+            $refundedSale = $sale->refundSale($refundRequest, $this->_api_context);print_r($refundedSale);die();
+        } catch (Exception $ex) {
+            // ResultPrinter::printError("Refund Sale", "Sale", null, $refundRequest, $ex);
+            exit(1);
+        }
+
+        // ResultPrinter::printResult("Refund Sale", "Sale", $refundedSale->getId(), $refundRequest, $refundedSale);
+        return $refundedSale;
+    }
 	
 	public function createXLS() {
 		$submitForm = $this->input->post('submitForm');

@@ -237,7 +237,7 @@ class OrdersModel extends MY_Model {
 	}
 	
 	public function getOrderByPaypal($code,$customer,$phone,$email,$status,$payerstatus,$limit, $offset) {
-		$this->db->select('orders.*,payments.*');
+		$this->db->select('orders.*,payments.PayerStatus as PayerStatus,payments.paymentID as paymentID, payments.txn_id as txn_id');
 		$this->db->join('payments', 'orders.code = payments.paymentID', 'left');
 		// $this->db->join('customers', 'orders.customer_id = customers.id', 'left');
 		if($code){

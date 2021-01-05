@@ -10,6 +10,7 @@ use PayPal\Api\RedirectUrls;
 use PayPal\Api\Amount;
 use PayPal\Api\PaymentExecution;
 use PayPal\Api\RefundRequest;
+use PayPal\Api\DetailedRefund;
 use PayPal\Api\Sale;
 
 class Paypal extends MY_Controller
@@ -21,6 +22,7 @@ class Paypal extends MY_Controller
         $this->load->model('paypal_model', 'paypal');
         $this->load->model('ordersmodel');
 		$this->load->model('orderdetailsmodel');
+		$this->load->model('productsmodel');
 		// paypal credentials
         $this->config->load('paypal');
 
@@ -54,25 +56,19 @@ class Paypal extends MY_Controller
 // information
 		$array_item = $this->input->post('item');
 		foreach ($array_item as $k=>$v) {
-			$item[$k]["name"] = $v['name'];
-			$item[$k]["sku"] = $v['number'];  // Similar to `item_number` in Classic API
-			$item[$k]["description"] = $v['description'];
+			// Get price from DB
+			$product_data = $this->productsmodel->read(array('id'=>$v['number']),array(),true);
+			
+			$item[$k]["name"] = $product_data->title;
+			$item[$k]["sku"] = $v['number']; // Same Product ID
+			$item[$k]["description"] = $product_data->description;
 			$item[$k]["currency"] ="USD";
 			$item[$k]["quantity"] = strval($v['qty']);
-			$item[$k]["price"] = $v['price'];
+			$item[$k]["price"] = $product_data->price;
 		}
-		// print_r($item);die();
-        // $item["name"] = $this->input->post('item_name');
-        // $item["sku"] = $this->input->post('item_number');  // Similar to `item_number` in Classic API
-        // $item["description"] = $this->input->post('item_description');
-        // $item["currency"] ="USD";
-        // $item["quantity"] = strval($this->input->post('item_qty'));
-        // $item["price"] = $this->input->post('item_price');
-
         $itemList = new ItemList();
         $itemList->setItems($item);
-		
-		// print_r($itemList );die();
+
 		// Set shipping address
 		$shipping_address['recipient_name'] = $this->input->post('item_name');
 		$shipping_address['city'] = $this->input->post('ship_city');
@@ -82,39 +78,29 @@ class Paypal extends MY_Controller
 		$shipping_address['line1'] = @$this->input->post('item_address');
         $itemList->setShippingAddress(@$shipping_address);
 		
-// ### Additional payment details
-// Use this optional field to set additional
-// payment information such as tax, shipping
-// charges etc.
+		// ### Additional payment details
 		$details['tax'] = $this->input->post('details_tax');
         $details['subtotal'] = $this->input->post('details_subtotal');
-// ### Amount
-// Lets you specify a payment amount.
-// You can also specify additional details
-// such as shipping, tax.
+		
+		// ### Amount
         $amount['currency'] = "USD";
         $amount['total'] = $details['tax'] + $details['subtotal'];
         $amount['details'] = $details;
-// ### Transaction
-// A transaction defines the contract of a
-// payment - what is the payment for and who
-// is fulfilling it.
+		
+		// ### Transaction
         $transaction['description'] ='Payment description';
         $transaction['amount'] = $amount;
         $transaction['invoice_number'] = uniqid();
         $transaction['item_list'] = $itemList;
         // ### Redirect urls
 		
-// Set the urls that the buyer must be redirected to after
-// payment approval/ cancellation.
+		// Set the urls that the buyer must be redirected to after payment approval/ cancellation.
         $baseUrl = base_url();
         $redirectUrls = new RedirectUrls();
         $redirectUrls->setReturnUrl($baseUrl."paypal/getPaymentStatus")
             ->setCancelUrl($baseUrl."paypal/getPaymentStatus");
 
-// ### Payment
-// A Payment Resource; create one using
-// the above types and intent set to sale 'sale'
+		// ### Payment
         $payment = new Payment();
         $payment->setIntent("sale")
             ->setPayer($payer)
@@ -232,7 +218,7 @@ class Paypal extends MY_Controller
             $Total = $sale->getAmount()->getTotal();
             /** it's all right **/
             /** Here Write your database logic like that insert record or value in database if you want **/
-            $this->paypal->create($payment_id,$Total,$Subtotal,$Tax,$PaymentMethod,$PayerStatus,$PayerMail,$saleId,$CreateTime,$UpdateTime,$State);
+            $this->paypal->createRecord($payment_id,$Total,$Subtotal,$Tax,$PaymentMethod,$PayerStatus,$PayerMail,$saleId,$CreateTime,$UpdateTime,$State);
 
 			$this->db->where('paymentID', $payment_id);
 			$this->db->update('payments', array('payerstatus'=>'VERIFIED'));
@@ -263,41 +249,41 @@ class Paypal extends MY_Controller
     }
 
     function refund_payment(){
-        $refund_amount = $this->input->post('refund_amount');
-        $saleId = $this->input->post('sale_id');
-        $paymentValue =  (string) round($refund_amount,2); ;
+        $refund_amount 	= $this->input->post('refund_amount');
+        $paymentValue	= (string) round($refund_amount,2); ;
+        $redirect_url 			= $this->input->get("redirect_url") ;
+        $saleId 					= $this->input->post('sale_id');
 
-// ### Refund amount
-// Includes both the refunded amount (to Payer)
-// and refunded fee (to Payee). Use the $amt->details
-// field to mention fees refund details.
         $amt = new Amount();
         $amt->setCurrency('USD')
             ->setTotal($paymentValue);
 
-// ### Refund object
         $refundRequest = new RefundRequest();
         $refundRequest->setAmount($amt);
 
-// ###Sale
-// A sale transaction.
-// Create a Sale object with the
-// given sale transaction id.
         $sale = new Sale();
         $sale->setId($saleId);
         try {
             // Refund the sale
-            // (See bootstrap.php for more on `ApiContext`)
             $refundedSale = $sale->refundSale($refundRequest, $this->_api_context);
         } catch (Exception $ex) {
-            // NOTE: PLEASE DO NOT USE RESULTPRINTER CLASS IN YOUR ORIGINAL CODE. FOR SAMPLE ONLY
-            ResultPrinter::printError("Refund Sale", "Sale", null, $refundRequest, $ex);
+            //ResultPrinter::printError("Refund Sale", "Sale", null, $refundRequest, $ex);
             exit(1);
         }
-
-// NOTE: PLEASE DO NOT USE RESULTPRINTER CLASS IN YOUR ORIGINAL CODE. FOR SAMPLE ONLY
-        ResultPrinter::printResult("Refund Sale", "Sale", $refundedSale->getId(), $refundRequest, $refundedSale);
-
-        return $refundedSale;
+        // ResultPrinter::printResult("Refund Sale", "Sale", $refundedSale->getId(), $refundRequest, $refundedSale);
+		$this->testFunction($refundedSale);
+		die();
+		
+        redirect($redirect_url);
     }
+	
+	public function testFunction($refundedSale) {
+		$n1 = $refundedSale->getRefundFromTransactionFee();
+		$n2 = $refundedSale->getRefundFromReceivedAmount();
+		$n3 = $refundedSale->getTotalRefundedAmount();
+		print_r($n1->value);
+		print_r($n2->value);
+		print_r($n3->value);
+	}
+
 }
